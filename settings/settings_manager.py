@@ -1,8 +1,9 @@
 import json
 import os
 
-from .settings import Settings
+from .models.Settings import Settings
 
+from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 
 class SettingsManager:
     """
@@ -25,8 +26,7 @@ class SettingsManager:
             
     
     def convert(self, new_dict: dict):
-        if not isinstance(new_dict, dict):
-            raise TypeError("Некорректно переданы параметры!")
+        Validator.validate_type(value, dict, 'new_dict')
         for key, value in new_dict.items():
             if hasattr(self.__settings, key):
                 setattr(self.__settings, key, value)
@@ -36,8 +36,7 @@ class SettingsManager:
         """
         Открыть и загрузить настройки
         """
-        if not isinstance(file_name, str):
-            raise TypeError("Некорректно переданы параметры!")
+        Validator.validate_type(file_name, str, 'file_name')
         
         if file_name != "":
             self.__file_name = file_name
@@ -46,7 +45,7 @@ class SettingsManager:
             full_name = self.__get_file_path(self.__file_name)
             if full_name is None:
                 self.__settings = self.__default_settings()
-                raise FileNotFoundError(f"Файл {self.__file_name} не был найден.")
+                Validator.validate_file_exists(self.__file_name)
                 
             with open (full_name, 'r', encoding="utf-8") as stream:
                 data = json.load(stream)
