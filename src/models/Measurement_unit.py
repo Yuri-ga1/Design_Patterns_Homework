@@ -3,7 +3,7 @@ from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 
 class MeasurementUnit(AbstractReference):
     __name = ""
-    __unit = ""
+    __unit: 'MeasurementUnit' = None
     __conversion_rate = 1
 
     @property

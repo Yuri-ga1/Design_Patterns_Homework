@@ -1,3 +1,5 @@
+from general.exception.Validator_wrapper import ValidatorWrapper as Validator
+
 
 class Settings:
     """
@@ -16,8 +18,7 @@ class Settings:
     
     @organization_name.setter
     def organization_name(self, value:str):
-        if not isinstance(value, str):
-            raise TypeError("Некорректно передан параметр!")
+        Validator.validate_type(value, str, 'value')
         
         self.__organization_name = value
 
@@ -27,10 +28,8 @@ class Settings:
     
     @inn.setter
     def inn(self, value:str):
-        if not isinstance(value, str):
-            raise TypeError("Некорректно переданы параметры!")
-        if len(value) != 12 or not value.isdigit():
-            raise ValueError("Длинна ИНН обязанна быть 12 цифр!")
+        Validator.validate_type(value, str, 'value')
+        Validator.validate_digits(value, 12, 'value')
 
         self.__inn = value
         
@@ -41,10 +40,8 @@ class Settings:
     
     @account.setter
     def account(self, value:str):
-        if not isinstance(value, str):
-            raise TypeError("Некорректно переданы параметры!")
-        if len(value) != 11 or not value.isdigit():
-            raise ValueError("Длинна счета обязанна быть 11 цифр!")
+        Validator.validate_type(value, str, 'value')
+        Validator.validate_digits(value, 11, 'value')
 
         self.__account = value
         
@@ -55,10 +52,8 @@ class Settings:
     
     @correspondent_account.setter
     def correspondent_account(self, value:str):
-        if not isinstance(value, str):
-            raise TypeError("Некорректно переданы параметры!")
-        if len(value) != 11 or not value.isdigit():
-            raise ValueError("Длинна корреспондентского счета обязанна быть 11 цифр!")
+        Validator.validate_type(value, str, 'value')
+        Validator.validate_digits(value, 11, 'value')
 
         self.__correspondent_account = value
         
@@ -69,10 +64,8 @@ class Settings:
     
     @bic.setter
     def bic(self, value:str):
-        if not isinstance(value, str):
-            raise TypeError("Некорректно переданы параметры!")
-        if len(value) != 9 or not value.isdigit():
-            raise ValueError("Длинна БИК обязанна быть 9 цифр!")
+        Validator.validate_type(value, str, 'value')
+        Validator.validate_digits(value, 9, 'value')
 
         self.__bic = value
         
@@ -83,9 +76,7 @@ class Settings:
     
     @property_type.setter
     def property_type(self, value:str):
-        if not isinstance(value, str):
-            raise TypeError("Некорректно переданы параметры!")
-        if len(value) != 5:
-            raise ValueError("Вид собственности обязанн содержать 5 символов!")
-
+        Validator.validate_type(value, str, 'value')
+        Validator.validate_length(value, 5, 'value')
+        
         self.__property_type = value

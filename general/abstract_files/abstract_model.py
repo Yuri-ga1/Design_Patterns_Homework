@@ -2,6 +2,8 @@ import uuid
 
 from abc import ABC, abstractmethod
 
+from general.exception.Validator_wrapper import ValidatorWrapper as Validator
+
 class AbstractReference(ABC):
     __id: str = str(uuid.uuid4())
     __name: str = ""
@@ -21,12 +23,8 @@ class AbstractReference(ABC):
     
     @name.setter
     def name(self, value: str): 
-        if not isinstance(value, str):
-            raise TypeError("Некорректно передан параметр!")
-        if not value.strip():
-            raise ValueError("Значение 'name' не может быть пустым!")
-        if len(value) > 50:
-            raise ValueError("Значение 'name' не может быть длинее 50 символов!")
+        Validator.validate_type(value, str, 'name')
+        Validator.validate_max_length(value, 50, 'value')
         self.__name = value
 
     
