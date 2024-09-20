@@ -19,3 +19,22 @@ class NomenclatureGroup(AbstractReference):
         if isinstance(other, NomenclatureGroup):
             return self.__name == other.name
         return NotImplemented
+    
+    """
+    Default группа - сырье (фабричный метод)
+    """
+    @staticmethod
+    def default_group_source():
+        item = NomenclatureGroup()
+        item.name = "Сырье"
+        return item
+    
+    """
+    Default группа - замарозка (фабричный метод)
+    """
+    @staticmethod
+    def default_group_cold():
+        item = NomenclatureGroup()
+        item.name = "Заморозка"
+        return item
+    

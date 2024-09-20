@@ -1,4 +1,4 @@
-from settings.settings_manager import SettingsManager
+from general.settings.settings_manager import SettingsManager
 
 
 manager1 = SettingsManager()
