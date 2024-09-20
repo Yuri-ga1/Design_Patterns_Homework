@@ -1,5 +1,5 @@
 from general.abstract_files.abstract_model import AbstractReference
-from general.settings.models.Settings import Settings
+from general.settings.settings import Settings
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 
 

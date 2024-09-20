@@ -6,6 +6,13 @@ class MeasurementUnit(AbstractReference):
     __unit: 'MeasurementUnit' = None
     __conversion_rate = 1
 
+    def __init__(self, name: str = "", unit: 'MeasurementUnit' = None, conversion_rate: int = 1):
+        if name:
+            Validator.validate_type(name, str, "name")
+            self.name = name
+        if unit:
+            self.set_base_unit(unit, conversion_rate)
+
     @property
     def name(self):
         return self.__name

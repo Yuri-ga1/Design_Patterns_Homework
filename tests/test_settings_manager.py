@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch, mock_open
-from settings.settings_manager import SettingsManager
-from settings.models.Settings import Settings
+from general.settings.settings_manager import SettingsManager
+from general.settings.settings import Settings
 from general.exception.exceptions import ArgumentException
 
 

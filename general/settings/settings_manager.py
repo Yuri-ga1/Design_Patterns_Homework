@@ -1,7 +1,7 @@
 import json
 import os
 
-from .models.Settings import Settings
+from .settings import Settings
 
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 

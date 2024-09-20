@@ -19,16 +19,19 @@ class data_reposity(AbstractLogic):
     def data(self) :
         return self.__data
 
-    """
-    Ключ для хранения групп номенклатуры
-    """
+    
     @staticmethod
     def group_key() -> str:
         return "group"
     
-    """
-    Перегрузка абстрактного метода
-    """
+    @staticmethod
+    def unit_key() -> str:
+        return "unit"
+    
+    @staticmethod
+    def nomenclature_key() -> str:
+        return "nomenclature"
+    
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)    
     
