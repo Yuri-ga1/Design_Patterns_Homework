@@ -46,3 +46,30 @@ class MeasurementUnit(AbstractReference):
                     self.__unit == other.unit and
                     self.__conversion_rate == other.conversion_rate)
         return NotImplemented
+    
+    @staticmethod
+    def default_unit_gramm():
+        gramm = MeasurementUnit("Грамм")
+        return gramm
+    
+    @staticmethod
+    def default_unit_kg():
+        gramm = MeasurementUnit.default_unit_gramm()
+        kg = MeasurementUnit("Килограмм", gramm, 1000)
+        return kg
+    
+    @staticmethod
+    def default_unit_thing():
+        thing = MeasurementUnit("Штука")
+        return thing
+    
+    @staticmethod
+    def default_unit_teaspoon():
+        teaspoon = MeasurementUnit("Чайная ложка")
+        return teaspoon
+    
+    @staticmethod
+    def default_unit_tablespoon():
+        teaspoon = MeasurementUnit.default_unit_teaspoon()
+        tablespoon = MeasurementUnit("Столовая ложка", teaspoon, 3)
+        return tablespoon

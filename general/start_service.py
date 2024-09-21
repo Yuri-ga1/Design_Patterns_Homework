@@ -56,11 +56,11 @@ class StartService(AbstractLogic):
             
 
     def __create_measurement_unit(self):
-        kg_unit = MeasurementUnit("Килограмм")
-        gramm_unit = MeasurementUnit("Грамм", kg_unit, 1000)
-        thing_unit = MeasurementUnit("Штука")
-        tablespoon_unit = MeasurementUnit("Столовая ложка")
-        teaspoon_unit = MeasurementUnit("Чайная ложка", tablespoon_unit, 3)
+        kg_unit = MeasurementUnit.default_unit_kg()
+        gramm_unit = MeasurementUnit.default_unit_gramm()
+        thing_unit = MeasurementUnit.default_unit_thing()
+        tablespoon_unit = MeasurementUnit.default_unit_tablespoon()
+        teaspoon_unit = MeasurementUnit.default_unit_teaspoon()
         unit_list = (kg_unit, gramm_unit, thing_unit,
                      tablespoon_unit, teaspoon_unit)
         
