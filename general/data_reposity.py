@@ -4,12 +4,12 @@ from general.abstract_files.abstract_logic import AbstractLogic
 """
 Репозиторий данных
 """
-class data_reposity(AbstractLogic):
+class DataReposity(AbstractLogic):
     __data = {}
 
     def __new__(cls):
         if not hasattr(cls, 'instance'):
-            cls.instance = super(data_reposity, cls).__new__(cls)
+            cls.instance = super(DataReposity, cls).__new__(cls)
         return cls.instance 
 
     """
@@ -31,6 +31,10 @@ class data_reposity(AbstractLogic):
     @staticmethod
     def nomenclature_key() -> str:
         return "nomenclature"
+    
+    @staticmethod
+    def recipe_key() -> str:
+        return "recipe"
     
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)    

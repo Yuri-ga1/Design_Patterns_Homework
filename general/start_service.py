@@ -1,7 +1,7 @@
 import os
 
 from general.abstract_files.abstract_logic import AbstractLogic
-from general.data_reposity import data_reposity
+from general.data_reposity import DataReposity
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 
 from general.settings.settings_manager import SettingsManager
@@ -15,16 +15,19 @@ from src.models.Nomeclature_group import NomenclatureGroup
 """
 Сервис для реализации первого старта приложения
 """
-class start_service(AbstractLogic):
-    __reposity: data_reposity = None
+class StartService(AbstractLogic):
+    __reposity: DataReposity = None
     __settings_manager: SettingsManager = None
+    __recipe_manager: RecipeManager = None
 
-    def __init__(self, reposity: data_reposity, manager: SettingsManager ) -> None:
+    def __init__(self, reposity: DataReposity, settings_manager: SettingsManager, recipe_manager: RecipeManager) -> None:
         super().__init__()
-        Validator.validate_type(reposity, data_reposity, 'reposity')
-        Validator.validate_type(manager, SettingsManager, 'manager')
+        Validator.validate_type(reposity, DataReposity, 'reposity')
+        Validator.validate_type(settings_manager, SettingsManager, 'settings_manager')
+        Validator.validate_type(recipe_manager, RecipeManager, 'recipe_manager')
         self.__reposity = reposity
-        self.__settings_manager = manager
+        self.__settings_manager = settings_manager
+        self.__recipe_manager = recipe_manager
 
     """
     Текущие настройки
@@ -37,20 +40,19 @@ class start_service(AbstractLogic):
         list = []
         list.append(NomenclatureGroup.default_group_cold())
         list.append( NomenclatureGroup.default_group_source())
-        self.__reposity.data[data_reposity.group_key()] = list
+        self.__reposity.data[self.__reposity.group_key()] = list
 
     def __create_nomenclature(self):
         directory = f'files{os.sep}recipes'
         ingredients = []
-        recipe_manager = RecipeManager()
         
         for filename in os.listdir(directory):
             file_path = os.path.join(directory, filename)
-            recipe_manager.open(file_path)
-            recipe_ing = recipe_manager.recipe.ingredients.keys()
+            self.__recipe_manager.open(file_path)
+            recipe_ing = self.__recipe_manager.recipe.ingredients.keys()
             ingredients.append(recipe_ing)
             
-        self.__reposity.data[data_reposity.nomenclature_key()] = ingredients
+        self.__reposity.data[self.__reposity.nomenclature_key()] = ingredients
             
 
     def __create_measurement_unit(self):
@@ -62,10 +64,17 @@ class start_service(AbstractLogic):
         unit_list = (kg_unit, gramm_unit, thing_unit,
                      tablespoon_unit, teaspoon_unit)
         
-        self.__reposity.data[data_reposity.unit_key()] = unit_list
+        self.__reposity.data[self.__reposity.unit_key()] = unit_list
         
     def __create_receipts(self):
-        pass
+        recipe_files = ['waffles.md', 'chocolate_cookies.md']
+        receipts_list = []
+    
+        for recipe_file in recipe_files:
+            self.__recipe_manager.open(recipe_file)
+            receipts_list.append(self.__recipe_manager.recipe)
+    
+        self.__reposity.data[self.__reposity.recipe_key()] = receipts_list
 
     def create(self):
         self.__create_nomenclature_groups()
