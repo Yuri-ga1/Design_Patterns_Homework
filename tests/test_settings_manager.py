@@ -25,12 +25,12 @@ class TestSettingsManager(unittest.TestCase):
     @patch("os.walk", return_value=[(".", [], ["settings.json"])])
     def test_get_file_path_file_not_found(self, mock_walk):
         """Тестирование поиска файла, когда файл не найден."""
-        result = self.manager._SettingsManager__get_file_path("non_existent_file.json")
+        result = self.manager._get_file_path("non_existent_file.json")
         self.assertIsNone(result)
 
     def test_default_settings(self):
         """Тестирование настройки по умолчанию."""
-        default_settings = self.manager._SettingsManager__default_settings()
+        default_settings = self.manager._default_value()
         self.assertEqual(default_settings.inn, "012345678901")
         self.assertEqual(default_settings.organization_name, "Рога и копыта (default)")
         self.assertEqual(default_settings.account, "01234567890")

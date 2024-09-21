@@ -46,12 +46,13 @@ class TestRecipeManager(unittest.TestCase):
     @patch("os.walk", return_value=[(".", [], ["recipe.md"])])
     def test_get_file_path_file_not_found(self, mock_walk):
         """Тестирование поиска файла, когда файл не найден."""
-        result = self.manager._RecipeManager__get_file_path("non_existent_file.md")
+        result = self.manager._get_file_path("non_existent_file.md")
         self.assertIsNone(result)
 
     def test_default_recipe(self):
         """Тестирование рецепта по умолчанию."""
-        default_recipe = self.manager._RecipeManager__default_recipe()
+        # default_recipe = self.manager._RecipeManager__default_recipe()
+        default_recipe = self.manager._default_value()
         self.assertEqual(default_recipe.name, "РЕЦЕПТ НЕ БЫЛ НАЙДЕН")
         self.assertEqual(default_recipe.ingredients["ИНГРИДИЕНТ 1"], "1")
         self.assertEqual(default_recipe.steps, ["ШАГ 1", "ШАГ 2", "ШАГ 3"])
