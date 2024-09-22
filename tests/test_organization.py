@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import Mock
 from src.models.Organization import Organization
-from settings.models.Settings import Settings
+from general.settings.settings import Settings
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 from general.exception.exceptions import ArgumentException, LengthException, DigitsException
 
