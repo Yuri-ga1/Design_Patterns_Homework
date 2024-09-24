@@ -4,5 +4,6 @@
     "account": "98765432109",
     "correspondent_account": "98765432109",
     "bic": "987654321",
-    "property_type": "98765"
+    "property_type": "98765",
+    "default_report_format": "csv"
 }

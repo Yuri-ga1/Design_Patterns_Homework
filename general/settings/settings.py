@@ -1,5 +1,5 @@
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
-
+from src.emuns.format_reporting import FormatReporting
 
 class Settings:
     """
@@ -11,6 +11,7 @@ class Settings:
     __correspondent_account = ""
     __bic = ""
     __property_type = ""
+    __default_report_format = ""
 
     @property
     def organization_name(self):
@@ -80,3 +81,13 @@ class Settings:
         Validator.validate_length(value, 5, 'value')
         
         self.__property_type = value
+        
+    @property
+    def default_report_format(self):
+        return self.__default_report_format
+    
+    @default_report_format.setter
+    def default_report_format(self, value:str):
+        Validator.validate_type(value, str, 'value')
+        
+        self.__default_report_format = value
