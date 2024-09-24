@@ -26,6 +26,8 @@ class RtfReport(AbstractReport):
         for row in data:
             for field in fields:
                 value = getattr(row, field)
+                if hasattr(value, 'name'):
+                    value = value.name  # Используем имя объекта
                 self.result += f"{str(value)}\t"
             self.result += "\\par\n"
         

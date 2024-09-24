@@ -6,17 +6,16 @@ from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 class CsvReport(AbstractReport):
 
     def __init__(self) -> None:
-       super().__init__()
-       self.__format = FormatReporting.CSV
+        super().__init__()
+        self.__format = FormatReporting.CSV
 
- 
     def create(self, data: list):
         Validator.validate_type(data, list, 'data')
         Validator.validate_not_empty_dataset(data)
         
         first_model = data[0]
 
-        fields = list(filter(lambda x: not x.startswith("_") and not callable(getattr(first_model.__class__, x )),  dir(first_model) ))
+        fields = list(filter(lambda x: not x.startswith("_") and not callable(getattr(first_model.__class__, x)), dir(first_model)))
 
         for field in fields:
             self.result += f"{str(field)};"
@@ -25,7 +24,13 @@ class CsvReport(AbstractReport):
 
         for row in data:
             for field in fields:
-            
                 value = getattr(row, field)
+                
+                if hasattr(value, 'name'):
+                    value = value.name
+                else:
+                    value = str(value) 
+                
                 self.result += f"{str(value)};"
             self.result += "\n"
+

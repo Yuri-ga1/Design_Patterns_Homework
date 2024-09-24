@@ -20,7 +20,11 @@ class XmlReport(AbstractReport):
             item = SubElement(root, "item")
             for field in dir(row):
                 if not field.startswith("_") and not callable(getattr(row.__class__, field)):
+                    value = getattr(row, field)
+                    if hasattr(value, 'name'):
+                        value = value.name  # Используем имя объекта
                     field_element = SubElement(item, field)
-                    field_element.text = str(getattr(row, field))
+                    field_element.text = str(value)
 
         self.result = tostring(root, encoding='unicode')
+
