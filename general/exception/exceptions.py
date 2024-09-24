@@ -36,4 +36,19 @@ class NotFoundException(BaseException):
     """Исключение для ошибок, связанных с отсутствием файла или данных."""
     def __init__(self, item: str = "File or item"):
         super().__init__(f"{item} not found")
+
+class OperationException(BaseException):
+    """Исключение для ошибок, связанных с выполнением операций."""
+    def __init__(self, message: str = "Operation failed"):
+        super().__init__(message)
+
+class EmptyDataSetException(OperationException):
+    """Исключение для ошибок, связанных с пустым набором данных."""
+    def __init__(self, message: str = "The dataset is empty"):
+        super().__init__(message)
         
+class InvalidFormatException(OperationException):
+    """Исключение для ошибок, связанных с неподдерживаемым форматом отчета."""
+    def __init__(self, format_name: str):
+        message = f"The specified format '{format_name}' is not supported!"
+        super().__init__(message)

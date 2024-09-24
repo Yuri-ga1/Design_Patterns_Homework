@@ -51,3 +51,16 @@ class ValidatorWrapper:
         import os
         if not os.path.exists(file_path):
             raise NotFoundException(f"File {file_path}")
+        
+    @staticmethod
+    def validate_not_empty_dataset(data, argument_name: str = "Dataset"):
+        """Проверяет, что набор данных не пустой, иначе выбрасывает EmptyDataSetException."""
+        if len(data) == 0:
+            raise EmptyDataSetException(f"{argument_name} is empty")
+        
+    @staticmethod
+    def validate_format(format: str, supported_formats: dict):
+        """Проверяет, что формат поддерживается, иначе выбрасывает InvalidFormatException."""
+        if format not in supported_formats:
+            raise InvalidFormatException(format)
+        
