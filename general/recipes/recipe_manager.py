@@ -2,20 +2,25 @@ import re
 from .recipe import Recipe
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 from general.abstract_files.abstract_manager import AbstractManager
+from src.models.Nomenclature import Nomenclature
+from src.models.Nomeclature_group import NomenclatureGroup
+from src.models.Measurement_unit import MeasurementUnit
 
 class RecipeManager(AbstractManager):
     __file_name = ""
     __recipe: Recipe = None
+    __nom_group: NomenclatureGroup = NomenclatureGroup()
+    __meas_unit: MeasurementUnit = MeasurementUnit()
 
     def __init__(self) -> None:
         super().__init__()
         if self.__recipe is None:
-            self._default_value()
+            self.__recipe = self._default_value()
 
     def open(self, file_name: str = ""):
         Validator.validate_type(file_name, str, 'file_name')
         
-        if file_name != "":
+        if file_name:
             self.__file_name = file_name
 
         try:
@@ -29,7 +34,8 @@ class RecipeManager(AbstractManager):
                 self.__parse_markdown(data)
 
             return True
-        except:
+        except Exception as e:
+            print(f"Error reading file: {e}") 
             self.__recipe = self._default_value()
             return False
 
@@ -38,8 +44,9 @@ class RecipeManager(AbstractManager):
         return self.__recipe
 
     def __parse_markdown(self, data: list):
+        """Парсинг файла в формате markdown и заполнение объекта Recipe."""
         name = data[0].replace("# ", "").strip()
-        ingredients = {}
+        ingredients = []
         steps = []
         header_and_row_counter = 0
 
@@ -53,11 +60,16 @@ class RecipeManager(AbstractManager):
                 if header_and_row_counter < 2:
                     header_and_row_counter += 1
                     continue
-                
+
                 parts = line.split("|")
                 ingredient_name = parts[1].strip()
-                amount = parts[2].strip()
-                ingredients[ingredient_name] = amount
+
+                ingredient = Nomenclature()
+                ingredient.name = ingredient_name
+                ingredient.full_name = ingredient_name
+                ingredient.group = self.__nom_group.default_group_source()
+                ingredient.unit = self.__meas_unit.default_unit_gramm()
+                ingredients.append(ingredient)
 
             elif re.match(r'^\d+', line) or line.startswith("-"):
                 steps.append(line)
@@ -67,13 +79,23 @@ class RecipeManager(AbstractManager):
         self.__recipe.steps = steps
 
     def _default_value(self):
+        """Задаем значения по умолчанию для рецепта."""
         data = Recipe()
         data.name = "РЕЦЕПТ НЕ БЫЛ НАЙДЕН"
-        data.ingredients = {
-            "ИНГРИДИЕНТ 1": "1",
-            "ИНГРИДИЕНТ 2": "2",
-            "ИНГРИДИЕНТ 3": "3",
-        }
+
+        ingredient1 = Nomenclature()
+        ingredient1.name = "ИНГРИДИЕНТ 1"
+        ingredient1.full_name = "ИНГРИДИЕНТ 1"
+
+        ingredient2 = Nomenclature()
+        ingredient2.name = "ИНГРИДИЕНТ 2"
+        ingredient2.full_name = "ИНГРИДИЕНТ 2"
+
+        ingredient3 = Nomenclature()
+        ingredient3.name = "ИНГРИДИЕНТ 3"
+        ingredient3.full_name = "ИНГРИДИЕНТ 3"
+        data.ingredients = [ingredient1, ingredient2, ingredient3]
+
         data.steps = [
             "ШАГ 1",
             "ШАГ 2",

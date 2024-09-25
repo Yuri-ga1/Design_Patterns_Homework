@@ -1,0 +1,22 @@
+[
+    {
+        "full_name": "",
+        "group": {
+            "id": "a588bc01-ce81-4ba8-9eeb-ce43d5509fdd",
+            "name": "Сырье"
+        },
+        "id": "a588bc01-ce81-4ba8-9eeb-ce43d5509fdd",
+        "name": "Тестовая Номенклатура",
+        "unit": {
+            "conversion_rate": 1000,
+            "id": "a588bc01-ce81-4ba8-9eeb-ce43d5509fdd",
+            "name": "Килограмм",
+            "unit": {
+                "conversion_rate": 1,
+                "id": "a588bc01-ce81-4ba8-9eeb-ce43d5509fdd",
+                "name": "Грамм",
+                "unit": null
+            }
+        }
+    }
+]

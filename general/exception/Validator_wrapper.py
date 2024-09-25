@@ -1,5 +1,5 @@
 from general.exception.exceptions import *
-
+from enum import Enum
 
 class ValidatorWrapper:
     """Класс-обертка для валидации аргументов и выброса соответствующих исключений."""
@@ -51,3 +51,40 @@ class ValidatorWrapper:
         import os
         if not os.path.exists(file_path):
             raise NotFoundException(f"File {file_path}")
+        
+    @staticmethod
+    def validate_not_empty_dataset(data, argument_name: str = "Dataset"):
+        """Проверяет, что набор данных не пустой, иначе выбрасывает EmptyDataSetException."""
+        if len(data) == 0:
+            raise EmptyDataSetException(f"{argument_name} is empty")
+        
+    @staticmethod
+    def validate_format(format: str, supported_formats: dict):
+        """Проверяет, что формат поддерживается, иначе выбрасывает InvalidFormatException."""
+        if format not in supported_formats:
+            raise InvalidFormatException(format)
+    
+    @staticmethod
+    def validate_module_exists(module_name: str, format_name: str):
+        """Проверяет, существует ли модуль, и выбрасывает NotFoundException при его отсутствии."""
+        import importlib
+        module = importlib.util.find_spec(module_name)
+        if module is None:
+            raise NotFoundException(f"Module for format {format_name} not found: {module_name}")
+        return importlib.import_module(module_name)
+
+    @staticmethod
+    def validate_class_exists(module, class_name: str, format_name: str):
+        """Проверяет существование класса в модуле и выбрасывает ArgumentException при отсутствии."""
+        if not hasattr(module, class_name):
+            raise ArgumentException(class_name, f"Class for format {format_name} not found in module {module.__name__}")
+        return getattr(module, class_name)
+    
+    @staticmethod
+    def validate_format_in_enum(value: str, enum_class: Enum, argument_name: str):
+        """Проверяет, что значение существует в перечислении, игнорируя регистр."""
+        ValidatorWrapper.validate_type(value, str, 'value')
+        if not issubclass(enum_class, Enum):
+            raise ArgumentException(argument_name, f"Expected enum class: {enum_class.__name__}")
+        if not any(value.upper() == item.name for item in enum_class):
+            raise ArgumentException(argument_name, f"Value '{value}' is not a valid format in {enum_class.__name__}")

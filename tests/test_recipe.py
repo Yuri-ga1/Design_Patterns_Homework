@@ -2,8 +2,7 @@ import unittest
 from unittest.mock import patch, mock_open
 from general.recipes.recipe_manager import RecipeManager
 from general.recipes.recipe import Recipe
-from general.exception.exceptions import ArgumentException
-
+from src.models.Nomenclature import Nomenclature
 
 class TestRecipeManager(unittest.TestCase):
     
@@ -26,11 +25,21 @@ class TestRecipeManager(unittest.TestCase):
     @patch("os.walk", return_value=[(".", [], ["recipe.md"])])
     def test_open_valid_file(self, mock_walk, mock_isfile, mock_open_file):
         """Тестирование успешного открытия файла рецепта."""
-        result = self.manager.open("recipe.md")
+        result = self.manager.open("waffles.md")
         self.assertTrue(result)
         self.assertEqual(self.manager.recipe.name, "Test Recipe")
-        self.assertEqual(self.manager.recipe.ingredients["Sugar sand"], "100g")
-        self.assertEqual(self.manager.recipe.ingredients["Milk"], "500 ml")
+        
+        print('\n', self.manager.recipe.ingredients)
+        
+        self.assertEqual(len(self.manager.recipe.ingredients), 3)
+
+        # Проверка конкретных ингредиентов
+        ingredient_names = [ingredient.name for ingredient in self.manager.recipe.ingredients]
+        self.assertIn("Sugar sand", ingredient_names)
+        self.assertIn("Egg", ingredient_names)
+        self.assertIn("Milk", ingredient_names)
+
+        # Проверяем шаги
         self.assertEqual(self.manager.recipe.steps, ["1. Mix ingredients", "2. Bake"])
 
     @patch("builtins.open", new_callable=mock_open)
@@ -40,7 +49,10 @@ class TestRecipeManager(unittest.TestCase):
         result = self.manager.open("non_existent_file.md")
         self.assertFalse(result)
         self.assertEqual(self.manager.recipe.name, "РЕЦЕПТ НЕ БЫЛ НАЙДЕН")
-        self.assertEqual(self.manager.recipe.ingredients["ИНГРИДИЕНТ 1"], "1")
+        self.assertEqual(len(self.manager.recipe.ingredients), 3)  # Убедитесь, что есть три ингредиента по умолчанию
+        self.assertEqual(self.manager.recipe.ingredients[0].name, "ИНГРИДИЕНТ 1")
+        self.assertEqual(self.manager.recipe.ingredients[1].name, "ИНГРИДИЕНТ 2")
+        self.assertEqual(self.manager.recipe.ingredients[2].name, "ИНГРИДИЕНТ 3")
         self.assertEqual(self.manager.recipe.steps, ["ШАГ 1", "ШАГ 2", "ШАГ 3"])
 
     @patch("os.walk", return_value=[(".", [], ["recipe.md"])])
@@ -51,11 +63,14 @@ class TestRecipeManager(unittest.TestCase):
 
     def test_default_recipe(self):
         """Тестирование рецепта по умолчанию."""
-        # default_recipe = self.manager._RecipeManager__default_recipe()
         default_recipe = self.manager._default_value()
         self.assertEqual(default_recipe.name, "РЕЦЕПТ НЕ БЫЛ НАЙДЕН")
-        self.assertEqual(default_recipe.ingredients["ИНГРИДИЕНТ 1"], "1")
+        self.assertEqual(len(default_recipe.ingredients), 3)  # Убедитесь, что есть три ингредиента
+        self.assertEqual(default_recipe.ingredients[0].name, "ИНГРИДИЕНТ 1")
+        self.assertEqual(default_recipe.ingredients[1].name, "ИНГРИДИЕНТ 2")
+        self.assertEqual(default_recipe.ingredients[2].name, "ИНГРИДИЕНТ 3")
         self.assertEqual(default_recipe.steps, ["ШАГ 1", "ШАГ 2", "ШАГ 3"])
+
 
 if __name__ == '__main__':
     unittest.main()

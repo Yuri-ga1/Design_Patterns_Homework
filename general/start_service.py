@@ -49,7 +49,7 @@ class StartService(AbstractLogic):
         for filename in os.listdir(directory):
             file_path = os.path.join(directory, filename)
             self.__recipe_manager.open(file_path)
-            recipe_ing = self.__recipe_manager.recipe.ingredients.keys()
+            recipe_ing = self.__recipe_manager.recipe.ingredients
             ingredients.append(recipe_ing)
             
         self.__reposity.data[self.__reposity.nomenclature_key()] = ingredients

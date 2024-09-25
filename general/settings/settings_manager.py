@@ -53,5 +53,6 @@ class SettingsManager(AbstractManager):
         data.correspondent_account = "01234567890"
         data.bic = "012345678"
         data.property_type = "01234"
+        data.default_report_format = 'csv'
 
         return data
