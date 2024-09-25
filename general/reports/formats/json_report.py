@@ -33,8 +33,11 @@ class JsonReport(AbstractReport):
                 
                 if hasattr(value, "__dict__"):
                     result[field] = self._object_to_dict(value)
+                elif isinstance(value, (list, tuple)):
+                    result[field] = [self._object_to_dict(item) if hasattr(item, "__dict__") else item for item in value]
                 elif hasattr(value, 'name'):
                     result[field] = value.name
                 else:
                     result[field] = value
+                    
         return result

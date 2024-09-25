@@ -1,1 +1,2 @@
-<root><item><ingredients>{'Ингредиент 1': 100, 'Ингредиент 2': 200}</ingredients><name>Тестовый Рецепт</name><steps>['Шаг 1', 'Шаг 2']</steps></item></root>
+<?xml version="1.0" encoding="UTF-8"?>
+<root><item><ingredients>{'Ингредиент 1': 100, 'Ингредиент 2': 200}</ingredients><name>Тестовый Рецепт</name><steps>Шаг 1</steps><steps>Шаг 2</steps></item></root>

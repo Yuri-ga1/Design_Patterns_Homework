@@ -7,28 +7,42 @@ class RtfReport(AbstractReport):
     def __init__(self) -> None:
         super().__init__()
         self.__format = FormatReporting.RTF
+        self.result = ""
+
+    def _format_value(self, value, indent_level=0):
+        indent = "\\tab" * indent_level
+        result = ""
+
+        if hasattr(value, '__dict__'):
+            # Обрабатываем объект
+            for field in dir(value):
+                if not field.startswith("_") and not callable(getattr(value.__class__, field)):
+                    field_value = getattr(value, field)
+                    result += f"{indent}\\b {field}: \\b0 " + self._format_value(field_value, indent_level + 1)
+        elif isinstance(value, (list, tuple)):
+            # Обрабатываем список
+            for item in value:
+                result += f"{indent}- " + self._format_value(item, indent_level)
+        elif isinstance(value, dict):
+            # Обрабатываем словарь
+            for key, val in value.items():
+                result += f"{indent}\\b {key}: \\b0 " + self._format_value(val, indent_level + 1)
+        elif value is None:
+            result += f"{indent}null\\par\n"
+        else:
+            result += f"{indent}{str(value)}\\par\n"
+
+        return result
 
     def create(self, data: list):
         Validator.validate_type(data, list, 'data')
         Validator.validate_not_empty_dataset(data)
 
-        first_model = data[0]
-        fields = list(filter(lambda x: not x.startswith("_") and not callable(getattr(first_model.__class__, x)), dir(first_model)))
+        self.result += "{\\rtf1\\ansi\\deff0"  # Начало RTF документа
 
-        # Заголовок
-        self.result += "{\\rtf1\\ansi\\deff0"
-        for field in fields:
-            self.result += f"\\b {str(field)} \\b0\t"
-
-        self.result += "\\par\n"
-
-        # Данные
         for row in data:
-            for field in fields:
-                value = getattr(row, field)
-                if hasattr(value, 'name'):
-                    value = value.name  # Используем имя объекта
-                self.result += f"{str(value)}\t"
-            self.result += "\\par\n"
-        
-        self.result += "}"
+            self.result += "\\par\n"  # Новый параграф для каждого объекта
+            self.result += self._format_value(row)  # Обработка строки
+            self.result += "\\par\n"  # Завершение объекта
+
+        self.result += "}"  # Завершение RTF документа

@@ -1,15 +1,22 @@
 # full_name
-- 
+  
 
 # group
-- Сырье
+  - id:     6781a98f-3d71-4ca6-9e58-cc619a9ded8b
+  - name:     Сырье
 
 # id
-- bb3bd138-84fa-48fd-baee-e937d45fbf88
+  6781a98f-3d71-4ca6-9e58-cc619a9ded8b
 
 # name
-- Тестовая Номенклатура
+  Тестовая Номенклатура
 
 # unit
-- Килограмм
+  - conversion_rate:     1000
+  - id:     6781a98f-3d71-4ca6-9e58-cc619a9ded8b
+  - name:     Килограмм
+  - unit:     - conversion_rate:       1
+    - id:       6781a98f-3d71-4ca6-9e58-cc619a9ded8b
+    - name:       Грамм
+    - unit:       null
 

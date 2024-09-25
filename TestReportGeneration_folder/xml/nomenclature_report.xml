@@ -1,1 +1,2 @@
-<root><item><full_name /><group>Сырье</group><id>bb3bd138-84fa-48fd-baee-e937d45fbf88</id><name>Тестовая Номенклатура</name><unit>Килограмм</unit></item></root>
+<?xml version="1.0" encoding="UTF-8"?>
+<root><item><full_name /><group><id>6781a98f-3d71-4ca6-9e58-cc619a9ded8b</id><name>Сырье</name></group><id>6781a98f-3d71-4ca6-9e58-cc619a9ded8b</id><name>Тестовая Номенклатура</name><unit><conversion_rate>1000</conversion_rate><id>6781a98f-3d71-4ca6-9e58-cc619a9ded8b</id><name>Килограмм</name><unit><conversion_rate>1</conversion_rate><id>6781a98f-3d71-4ca6-9e58-cc619a9ded8b</id><name>Грамм</name><unit>None</unit></unit></unit></item></root>

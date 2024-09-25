@@ -1,12 +1,15 @@
 # conversion_rate
-- 1000
+  1000
 
 # id
-- bb3bd138-84fa-48fd-baee-e937d45fbf88
+  6781a98f-3d71-4ca6-9e58-cc619a9ded8b
 
 # name
-- Килограмм
+  Килограмм
 
 # unit
-- Грамм
+  - conversion_rate:     1
+  - id:     6781a98f-3d71-4ca6-9e58-cc619a9ded8b
+  - name:     Грамм
+  - unit:     null
 
