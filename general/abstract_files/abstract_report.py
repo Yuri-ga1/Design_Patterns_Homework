@@ -12,7 +12,6 @@ class AbstractReport(ABC):
 
     def save_report(self, path: str, report_name: str = None, format: FormatReporting = FormatReporting.CSV):
         Validator.validate_type(path, str, 'path')
-        print('\n', type(format))
         Validator.validate_format_in_enum(format.value, FormatReporting, 'format')
 
         folder_path = os.path.join(path, format.value)
