@@ -84,6 +84,7 @@ class ValidatorWrapper:
     def validate_format_in_enum(value: str, enum_class: Enum, argument_name: str):
         """Проверяет, что значение существует в перечислении, игнорируя регистр."""
         ValidatorWrapper.validate_type(value, str, 'value')
-        ValidatorWrapper.validate_type(enum_class, Enum, 'enum_class')
+        if not issubclass(enum_class, Enum):
+            raise ArgumentException(argument_name, f"Expected enum class: {enum_class.__name__}")
         if not any(value.upper() == item.name for item in enum_class):
             raise ArgumentException(argument_name, f"Value '{value}' is not a valid format in {enum_class.__name__}")

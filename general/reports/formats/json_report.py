@@ -16,14 +16,25 @@ class JsonReport(AbstractReport):
         # Преобразуем список объектов в список словарей
         result_list = []
         for row in data:
-            result_dict = {}
-            for field in dir(row):
-                if not field.startswith("_") and not callable(getattr(row.__class__, field)):
-                    value = getattr(row, field)
-                    if hasattr(value, 'name'):
-                        value = value.name  # Используем имя объекта
-                    result_dict[field] = value
+            result_dict = self._object_to_dict(row)
             result_list.append(result_dict)
         
         self.result = json.dumps(result_list, ensure_ascii=False, indent=4)
 
+    def _object_to_dict(self, obj):
+        """
+        Преобразуем объект в словарь. Если поле объекта также является объектом, 
+        рекурсивно вызываем преобразование.
+        """
+        result = {}
+        for field in dir(obj):
+            if not field.startswith("_") and not callable(getattr(obj.__class__, field)):
+                value = getattr(obj, field)
+                
+                if hasattr(value, "__dict__"):
+                    result[field] = self._object_to_dict(value)
+                elif hasattr(value, 'name'):
+                    result[field] = value.name
+                else:
+                    result[field] = value
+        return result

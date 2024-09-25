@@ -10,10 +10,11 @@ from general.settings.settings_manager import SettingsManager
 """
 class ReportFactory(AbstractLogic):
     __reports = {}
-    __settings_manager: SettingsManager = SettingsManager()
 
-    def __init__(self) -> None:
+    def __init__(self, settings_manager: SettingsManager = SettingsManager()) -> None:
         super().__init__()
+        Validator.validate_type(settings_manager, SettingsManager, "setting_manager")
+        self.__settings_manager = settings_manager
         self._load_reports()
         
         
