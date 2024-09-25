@@ -1,8 +1,10 @@
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
+from typing import List
+from src.models.Nomenclature import Nomenclature
 
 class Recipe:
     __name = ""
-    __ingredients = {}
+    __ingredients: List[Nomenclature] = []
     __steps = []
 
     @property
@@ -19,8 +21,10 @@ class Recipe:
         return self.__ingredients
     
     @ingredients.setter
-    def ingredients(self, value: dict):
-        Validator.validate_type(value, dict, 'value')
+    def ingredients(self, value: List[Nomenclature]):
+        Validator.validate_type(value, list, 'value')
+        for item in value:
+            Validator.validate_type(item, Nomenclature, 'ingredient')
         self.__ingredients = value
 
     @property
