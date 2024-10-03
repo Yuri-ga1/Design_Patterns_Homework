@@ -4,9 +4,9 @@ from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 class MeasurementUnit(AbstractReference):
     __name = ""
     __unit: 'MeasurementUnit' = None
-    __conversion_rate = 1
+    __conversion_rate: 'MeasurementUnit | int' = 1
 
-    def __init__(self, name: str = "", unit: 'MeasurementUnit' = None, conversion_rate: int = 1):
+    def __init__(self, name: str = "", unit: 'MeasurementUnit' = None, conversion_rate: 'MeasurementUnit | int' = 1):
         if name:
             Validator.validate_type(name, str, "name")
             self.name = name
@@ -27,10 +27,29 @@ class MeasurementUnit(AbstractReference):
     @property
     def unit(self):
         return self.__unit
+    
+    @unit.setter
+    def unit(self, value: 'MeasurementUnit'):
+        if value:
+            Validator.validate_type(value, MeasurementUnit, 'unit')
+        
+        self.__unit = value
 
     @property
-    def conversion_rate(self) -> int:
+    def conversion_rate(self) -> 'MeasurementUnit | int':
         return self.__conversion_rate
+    
+    @conversion_rate.setter
+    def conversion_rate(self, value: 'MeasurementUnit | int'):
+        if value:
+            if isinstance(value, MeasurementUnit):
+                Validator.validate_type(value, MeasurementUnit, 'conversion_rate')
+            elif isinstance(value, int):
+                Validator.validate_positive_integer(value, 'conversion_rate')
+            else:
+                raise TypeError("conversion_rate должен быть либо целым числом, либо объектом MeasurementUnit")
+        
+        self.__conversion_rate = value
     
     def set_base_unit(self, unit: 'MeasurementUnit', conversion_rate: int):
         Validator.validate_type(unit, MeasurementUnit, 'unit')

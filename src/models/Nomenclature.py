@@ -10,6 +10,16 @@ class Nomenclature(AbstractReference):
     __group: NomenclatureGroup = ""
     __unit: MeasurementUnit = ""
     
+    def __init__(self, name: str = "", full_name: str = "", group: NomenclatureGroup = None, unit: MeasurementUnit = None):
+        if name:
+            self.__name = name
+        if full_name:
+            self.__full_name = full_name
+        if group:
+            self.__group = group
+        if unit:
+            self.__unit = unit
+    
     @property
     def name(self):
         return self.__name
