@@ -1,5 +1,5 @@
 import re
-from .recipe import Recipe
+from src.models.recipe import Recipe
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 from general.abstract_files.abstract_manager import AbstractManager
 from src.models.Nomenclature import Nomenclature

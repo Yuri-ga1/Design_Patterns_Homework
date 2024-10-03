@@ -5,7 +5,7 @@ from src.emuns.format_reporting import FormatReporting
 from src.models.Nomenclature_group import NomenclatureGroup
 from src.models.Measurement_unit import MeasurementUnit
 from src.models.Nomenclature import Nomenclature
-from general.recipes.recipe import Recipe
+from src.models.recipe import Recipe
 
 class TestJSONReportGeneration(unittest.TestCase):
 
@@ -54,16 +54,6 @@ class TestJSONReportGeneration(unittest.TestCase):
         report = self.factory.create(FormatReporting.JSON)
         report.create([recipe])
         report.save_report(self.output_dir, 'recipe_report.json', FormatReporting.JSON)
-
-    # def tearDown(self):
-    #     self.clean_up()
-
-    def clean_up(self):
-        if os.path.exists(self.output_dir):
-            for filename in os.listdir(self.output_dir):
-                file_path = os.path.join(self.output_dir, filename)
-                os.remove(file_path)
-            os.rmdir(self.output_dir)
 
 
 if __name__ == '__main__':
