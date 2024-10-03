@@ -1,5 +1,5 @@
 from general.abstract_files.abstract_model import AbstractReference
-from src.models.Nomeclature_group import NomenclatureGroup
+from src.models.Nomenclature_group import NomenclatureGroup
 from src.models.Measurement_unit import MeasurementUnit
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 import inspect

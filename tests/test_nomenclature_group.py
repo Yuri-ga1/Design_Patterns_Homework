@@ -1,6 +1,6 @@
 import unittest
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
-from src.models.Nomeclature_group import NomenclatureGroup
+from src.models.Nomenclature_group import NomenclatureGroup
 from general.exception.exceptions import ArgumentException, MaxLengthException
 
 
