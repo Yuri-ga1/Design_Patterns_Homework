@@ -23,14 +23,17 @@ class JsonReport(AbstractReport):
 
     def _object_to_dict(self, obj):
         """
-        Преобразуем объект в словарь. Если поле объекта также является объектом, 
+        Преобразуем объект в словарь. Если поле объекта также является объектом,
         рекурсивно вызываем преобразование.
+        Добавляем название класса объекта.
         """
-        result = {}
+        result = {
+            "__class__": obj.__class__.__name__  # Добавляем имя класса
+        }
         for field in dir(obj):
             if not field.startswith("_") and not callable(getattr(obj.__class__, field)):
                 value = getattr(obj, field)
-                
+
                 if hasattr(value, "__dict__"):
                     result[field] = self._object_to_dict(value)
                 elif isinstance(value, (list, tuple)):
