@@ -1,9 +1,9 @@
 import re
-from .recipe import Recipe
+from general.recipes.recipe import Recipe
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 from general.abstract_files.abstract_manager import AbstractManager
 from src.models.Nomenclature import Nomenclature
-from src.models.Nomeclature_group import NomenclatureGroup
+from src.models.Nomenclature_group import NomenclatureGroup
 from src.models.Measurement_unit import MeasurementUnit
 
 class RecipeManager(AbstractManager):

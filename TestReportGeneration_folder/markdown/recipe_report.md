@@ -1,23 +1,23 @@
 # ingredients
-  -     - full_name:       Пшеничная мука
-    - group:       - id:         a588bc01-ce81-4ba8-9eeb-ce43d5509fdd
+  -     - full_name:       
+    - group:       - id:         8b69926b-76f8-4986-b8fb-c4db58caeecf
       - name:         Сырье
-    - id:       a588bc01-ce81-4ba8-9eeb-ce43d5509fdd
+    - id:       8b69926b-76f8-4986-b8fb-c4db58caeecf
     - name:       Пшеничная мука
     - unit:       - conversion_rate:         1000
-      - id:         a588bc01-ce81-4ba8-9eeb-ce43d5509fdd
+      - id:         8b69926b-76f8-4986-b8fb-c4db58caeecf
       - name:         Килограмм
       - unit:         - conversion_rate:           1
-        - id:           a588bc01-ce81-4ba8-9eeb-ce43d5509fdd
+        - id:           8b69926b-76f8-4986-b8fb-c4db58caeecf
         - name:           Грамм
         - unit:           null
-  -     - full_name:       Сахар
-    - group:       - id:         a588bc01-ce81-4ba8-9eeb-ce43d5509fdd
+  -     - full_name:       
+    - group:       - id:         8b69926b-76f8-4986-b8fb-c4db58caeecf
       - name:         Сырье
-    - id:       a588bc01-ce81-4ba8-9eeb-ce43d5509fdd
+    - id:       8b69926b-76f8-4986-b8fb-c4db58caeecf
     - name:       Сахар
     - unit:       - conversion_rate:         1
-      - id:         a588bc01-ce81-4ba8-9eeb-ce43d5509fdd
+      - id:         8b69926b-76f8-4986-b8fb-c4db58caeecf
       - name:         Чайная ложка
       - unit:         null
 

@@ -1,8 +1,9 @@
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
+from general.abstract_files.abstract_model import AbstractReference
 from typing import List
 from src.models.Nomenclature import Nomenclature
 
-class Recipe:
+class Recipe(AbstractReference):
     __name = ""
     __ingredients: List[Nomenclature] = []
     __steps = []
@@ -35,3 +36,12 @@ class Recipe:
     def steps(self, value: list):
         Validator.validate_type(value, list, 'value')
         self.__steps = value
+
+    def __eq__(self, other):
+        if isinstance(other, Recipe):
+            return (
+                self.__name == other.name and
+                self.__ingredients == other.ingredients and
+                self.__steps == other.steps
+            )
+        return NotImplemented

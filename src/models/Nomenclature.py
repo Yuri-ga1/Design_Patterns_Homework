@@ -1,5 +1,5 @@
 from general.abstract_files.abstract_model import AbstractReference
-from src.models.Nomeclature_group import NomenclatureGroup
+from src.models.Nomenclature_group import NomenclatureGroup
 from src.models.Measurement_unit import MeasurementUnit
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 import inspect
@@ -9,6 +9,16 @@ class Nomenclature(AbstractReference):
     __full_name = ""
     __group: NomenclatureGroup = ""
     __unit: MeasurementUnit = ""
+    
+    def __init__(self, name: str = "", full_name: str = "", group: NomenclatureGroup = None, unit: MeasurementUnit = None):
+        if name:
+            self.__name = name
+        if full_name:
+            self.__full_name = full_name
+        if group:
+            self.__group = group
+        if unit:
+            self.__unit = unit
     
     @property
     def name(self):
@@ -40,7 +50,6 @@ class Nomenclature(AbstractReference):
     
     @group.setter
     def group(self, value: NomenclatureGroup):
-        print(type(value))
         Validator.validate_type(value, NomenclatureGroup, inspect.currentframe().f_code.co_name)
         
         self.__group = value

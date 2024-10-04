@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import Mock
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 from src.models.Nomenclature import Nomenclature
-from src.models.Nomeclature_group import NomenclatureGroup
+from src.models.Nomenclature_group import NomenclatureGroup
 from src.models.Measurement_unit import MeasurementUnit
 from general.exception.exceptions import *
 

@@ -9,7 +9,7 @@ from general.settings.settings import Settings
 from general.recipes.recipe_manager import RecipeManager
 
 from src.models.Measurement_unit import MeasurementUnit
-from src.models.Nomeclature_group import NomenclatureGroup
+from src.models.Nomenclature_group import NomenclatureGroup
 
 
 """
