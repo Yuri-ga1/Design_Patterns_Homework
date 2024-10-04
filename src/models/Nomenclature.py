@@ -50,7 +50,6 @@ class Nomenclature(AbstractReference):
     
     @group.setter
     def group(self, value: NomenclatureGroup):
-        print(type(value))
         Validator.validate_type(value, NomenclatureGroup, inspect.currentframe().f_code.co_name)
         
         self.__group = value

@@ -5,7 +5,7 @@ from src.emuns.format_reporting import FormatReporting
 from src.models.Nomenclature_group import NomenclatureGroup
 from src.models.Measurement_unit import MeasurementUnit
 from src.models.Nomenclature import Nomenclature
-from src.models.recipe import Recipe
+from general.recipes.recipe import Recipe
 
 class TestRTFReportGeneration(unittest.TestCase):
 

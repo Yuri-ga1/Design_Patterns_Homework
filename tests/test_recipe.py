@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch, mock_open
 from general.recipes.recipe_manager import RecipeManager
-from src.models.recipe import Recipe
+from general.recipes.recipe import Recipe
 from src.models.Nomenclature import Nomenclature
 
 class TestRecipeManager(unittest.TestCase):
