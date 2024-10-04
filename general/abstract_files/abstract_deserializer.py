@@ -1,13 +1,10 @@
-import os
-import importlib
-import inspect
+from general.abstract_files.abstract_model import AbstractReference
 from typing import Dict
 from abc import ABC, abstractmethod
 from general.exception.Validator_wrapper import ValidatorWrapper
 
 class AbstractDeserializer(ABC):
     __class_mapping: dict = {}
-    __models_path: str = 'src/models'
     
     def __init__(self):
         self._generate_class_mapping()
@@ -22,20 +19,10 @@ class AbstractDeserializer(ABC):
 
     def _generate_class_mapping(self):
         """
-        Проходит по всем модулям в директории моделей и собирает все классы.
+        Проходит по всем наследникам AbstractReference и формирует словарь.
         """
-        for root, _, files in os.walk(self.__models_path):
-            for file in files:
-                if file.endswith(".py") and not file.startswith("__"):
-                    module_name = os.path.splitext(file)[0]
-                    full_module_path = f"{self.__models_path.replace('/', '.')}.{module_name}"
-                    try:
-                        module = importlib.import_module(full_module_path)
-                        for name, obj in inspect.getmembers(module, inspect.isclass):
-                            if obj.__module__ == full_module_path:
-                                self.__class_mapping[name] = obj
-                    except Exception as e:
-                        print(f"Ошибка импорта модуля {full_module_path}: {e}")
+        for subclass in AbstractReference.__subclasses__():
+            self.__class_mapping[subclass.__name__] = subclass
 
     @abstractmethod
     def deserialize(self, data: str):
