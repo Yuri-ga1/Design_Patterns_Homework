@@ -16,9 +16,12 @@ class DataReposity(AbstractLogic):
     Набор данных
     """
     @property
-    def data(self) :
+    def data(self):
         return self.__data
-
+    
+    @property
+    def keys(self):
+        return self.__data.keys()
     
     @staticmethod
     def group_key() -> str:
