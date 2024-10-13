@@ -6,7 +6,6 @@ from general.filter.filter_matcher import FilterMatcher
 from src.emuns.filter_types import FilterTypes
 
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
-from general.exception.exceptions import ArgumentException, ConversionException
 
 from typing import List
 
@@ -72,7 +71,5 @@ class DomainPrototype(AbstractPrototype):
             return False
         try:
             return self.__matcher.match_field(field_value, filter_value, filter_type)
-        except (ArgumentException, ConversionException) as e:
-            return False
-        except Exception as ex:
+        except:
             return False

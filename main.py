@@ -50,40 +50,31 @@ def create_report(category, format_type: str):
 def filter_data(domain_type):
     reposity_data = reposity.data
     reposity_data_keys = reposity.keys
-    print("here7")
 
     if domain_type not in reposity_data_keys:
         return jsonify({"error": "Invalid domain type"}), 400
-    print("here6")
 
     filter_data = request.get_json()
     if filter_data is None:
         return jsonify({"error": "Invalid JSON payload"}), 400
-    print("here5")
-    print(filter_data)
 
     try:
-        filt = FilterDTO.from_dict(filter_data)
-        print('filt = ', filt)
+        filt = FilterDTO.from_json(filter_data)
     except Exception as e:
         return jsonify({"error": str(e)}), 400
-    print("here4")
 
     data = reposity_data[domain_type]
     if not data:
         return jsonify({"error": "No data available"}), 404
-    print("here3")
 
     prototype = DomainPrototype(data)
     filtered_data = prototype.create(data, filt)
 
     if not filtered_data.data:
         return jsonify({"message": "No data found"}), 404
-    print("here2")
 
     report = ReportFactory(settings_manager).create(FormatReporting.JSON)
     report.create(filtered_data.data)
-    print("here1")
     return report.result, 200
 
 if __name__ == '__main__':

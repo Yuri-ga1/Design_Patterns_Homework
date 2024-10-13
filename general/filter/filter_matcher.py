@@ -1,6 +1,5 @@
 from src.emuns.filter_types import FilterTypes
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
-from general.exception.exceptions import ArgumentException, ConversionException
 
 class FilterMatcher:
     def __init__(self):
