@@ -7,7 +7,7 @@ class FilterDTO(AbstractLogic):
     __name: str = ""
     __unique_code: str = ""
     __type: FilterTypes = FilterTypes.EQUALS
-
+    
     def __init__(self, name: str = "", unique_code: str = "", type_value: FilterTypes = FilterTypes.EQUALS):
         if name:
             self.name = name
@@ -45,7 +45,7 @@ class FilterDTO(AbstractLogic):
         self.__type = value
 
     @staticmethod
-    def from_dict(data: dict):
+    def from_json(data: dict):
         Validator.validate_type(data, dict, "data")
         try:
             name = data.get('name', "")
@@ -57,8 +57,6 @@ class FilterDTO(AbstractLogic):
             Validator.validate_format_in_enum(type_value, FilterTypes, 'type')
             type_value = FilterTypes(type_value)
             
-            print('from_dict5')
-            print(type(type_value), type_value)
             return FilterDTO(
                 name=name,
                 unique_code=unique_code,
