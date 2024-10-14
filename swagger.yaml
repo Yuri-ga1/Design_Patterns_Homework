@@ -47,3 +47,44 @@ paths:
           description: Internal Server Error
         default:
           description: Unknown error
+  /filter/{domain_type}:
+    post:
+      operationId: main.filter_data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: domain_type
+          in: path
+          required: true
+          type: string
+          description: Model type for filter (unit, group, nomenclature, recipes)
+        - in: body
+          name: filter_dto
+          description: DTO model for filter
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              unique_code:
+                type: string
+              type:
+                type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+        400:
+          description: Bad Request
+        404:
+          description: Not Found
+        500:
+          description: Internal Server Error
+        default:
+          description: Unknown error

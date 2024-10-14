@@ -4,6 +4,13 @@ from enum import Enum
 class ValidatorWrapper:
     """Класс-обертка для валидации аргументов и выброса соответствующих исключений."""
 
+
+    @staticmethod
+    def validate_not_none(value, field_name: str):
+        """Проверяет, что значение не None. Если значение None, выбрасывает исключение."""
+        if value is None:
+            raise ArgumentException(f"Field '{field_name}' can not be None.")
+
     @staticmethod
     def validate_length(value: str, length: int, argument_name: str):
         """Проверяет длину строки и выбрасывает LengthException при неккоректной длине."""
@@ -53,6 +60,12 @@ class ValidatorWrapper:
             raise NotFoundException(f"File {file_path}")
         
     @staticmethod
+    def validate_non_empty(value: str, argument_name: str):
+        """Проверяет, что строка не пустая, иначе выбрасывает ArgumentException."""
+        if not value or not value.strip():
+            raise ArgumentException(argument_name, "Cannot be empty")
+        
+    @staticmethod
     def validate_not_empty_dataset(data, argument_name: str = "Dataset"):
         """Проверяет, что набор данных не пустой, иначе выбрасывает EmptyDataSetException."""
         if len(data) == 0:
@@ -83,7 +96,7 @@ class ValidatorWrapper:
     @staticmethod
     def validate_format_in_enum(value: str, enum_class: Enum, argument_name: str):
         """Проверяет, что значение существует в перечислении, игнорируя регистр."""
-        ValidatorWrapper.validate_type(value, str, 'value')
+        ValidatorWrapper.validate_type(value, str, 'validate_format_in_enum "value" must be str')
         if not issubclass(enum_class, Enum):
             raise ArgumentException(argument_name, f"Expected enum class: {enum_class.__name__}")
         if not any(value.upper() == item.name for item in enum_class):
