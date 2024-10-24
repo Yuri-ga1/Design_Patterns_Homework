@@ -20,3 +20,7 @@ class FilterDataModel:
     ):
         self.domain_type = domain_type
         self.request = request
+        
+class TransactionFilterRequest:
+    def __init__(self, filter: WarehouseNomenFilter = Body(...)):
+        self.filter = filter

@@ -31,11 +31,11 @@ def report_formats():
 # Маршрут для создания отчета
 @app.get("/report/{category}/{format_type}")
 def create_report(form_data: CreateReportModel = Depends()):
-    reposity_data = reposity.data
-    reposity_data_keys = reposity.keys
-    
     category = form_data.category
     format_type = form_data.format_type
+    
+    reposity_data = reposity.data
+    reposity_data_keys = reposity.keys
     
     if category not in reposity_data_keys:
         raise HTTPException(status_code=400, detail="Invalid category")
@@ -68,7 +68,7 @@ async def filter_data(form_data: FilterDataModel = Depends()):
         raise HTTPException(status_code=400, detail="Invalid JSON payload")
     
     try:
-        filt = FilterDTO.from_json(filter_data)
+        filt = FilterDTO.create(filter_data)
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
     
@@ -82,6 +82,32 @@ async def filter_data(form_data: FilterDataModel = Depends()):
     if not filtered_data.data:
         raise HTTPException(status_code=404, detail="No data found")
     
+    report = ReportFactory(settings_manager).create(FormatReporting.JSON)
+    report.create(filtered_data.data)
+    
+    return report.result
+
+
+@app.post("/transactions")
+async def get_transactions(form_data: TransactionFilterRequest = Depends()):
+    warehouse_filter = form_data.filter.warehouse
+    nomenclature_filter = form_data.filter.nomenclature
+
+    warehouse_filt = FilterDTO.create(warehouse_filter.dict())
+    nomenclature_filt = FilterDTO.create(nomenclature_filter.dict())
+
+    data = reposity.data[reposity.warehouse_transaction_key()]
+    if not data:
+        raise HTTPException(status_code=404, detail="No data available")
+
+    prototype = DomainPrototype(data)
+    filtered_data = prototype.create(data, warehouse_filt)
+    filtered_data = prototype.create(filtered_data.data, nomenclature_filt)
+
+    if not filtered_data.data:
+        raise HTTPException(status_code=404, detail="No transactions found")
+
+    # Создание отчета
     report = ReportFactory(settings_manager).create(FormatReporting.JSON)
     report.create(filtered_data.data)
     

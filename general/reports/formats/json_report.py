@@ -2,6 +2,8 @@ from src.emuns.format_reporting import FormatReporting
 from general.abstract_files.abstract_report import AbstractReport
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 import json
+import enum
+from datetime import datetime
 
 class JsonReport(AbstractReport):
 
@@ -31,15 +33,21 @@ class JsonReport(AbstractReport):
             "__class__": obj.__class__.__name__  # Добавляем имя класса
         }
         for field in dir(obj):
-            if not field.startswith("_") and not callable(getattr(obj.__class__, field)):
+            if not field.startswith("_"):
                 value = getattr(obj, field)
-
+                
+                if isinstance(value, enum.EnumMeta):
+                    result[field] = value.value
+                    continue
+                
                 if hasattr(value, "__dict__"):
                     result[field] = self._object_to_dict(value)
                 elif isinstance(value, (list, tuple)):
                     result[field] = [self._object_to_dict(item) if hasattr(item, "__dict__") else item for item in value]
                 elif hasattr(value, 'name'):
                     result[field] = value.name
+                elif isinstance(value, datetime):
+                    result[field] = value.isoformat()
                 else:
                     result[field] = value
                     
