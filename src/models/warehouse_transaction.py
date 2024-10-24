@@ -55,8 +55,8 @@ class WarehouseTransaction(AbstractReference):
         return self.__warehouse
     
     @warehouse.setter
-    def warehouse(self, value):
-        ValidatorWrapper.validate_type(value, WarehouseModel, "WarehouseModel")
+    def warehouse(self, value: WarehouseModel):
+        ValidatorWrapper.validate_type(value, WarehouseModel, "WarehouseModel setter")
         self.__warehouse = value
 
     @property
@@ -109,5 +109,8 @@ class WarehouseTransaction(AbstractReference):
         if isinstance(other, WarehouseTransaction):
             return (self.warehouse == other.warehouse and
                     self.nomenclature == other.nomenclature and
+                    self.count == other.count and
+                    self.unit == other.unit and
+                    self.transaction_type == other.transaction_type and
                     self.period == other.period)
         return NotImplemented
