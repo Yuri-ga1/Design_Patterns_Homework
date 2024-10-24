@@ -20,6 +20,10 @@ class NomenclatureGroup(AbstractReference):
             return self.__name == other.name
         return NotImplemented
     
+    
+    def __hash__(self):
+        return hash(self.__name)
+    
     """
     Default группа - сырье (фабричный метод)
     """

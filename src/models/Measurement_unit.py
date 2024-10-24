@@ -66,6 +66,10 @@ class MeasurementUnit(AbstractReference):
                     self.__conversion_rate == other.conversion_rate)
         return NotImplemented
     
+    
+    def __hash__(self):
+        return hash((self.__name, self.__unit, self.__conversion_rate))
+    
     @staticmethod
     def default_unit_gramm():
         gramm = MeasurementUnit("Грамм")
