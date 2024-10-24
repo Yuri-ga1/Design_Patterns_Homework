@@ -43,7 +43,7 @@ class ValidatorWrapper:
     def validate_type(value, expected_type, argument_name: str):
         """Проверяет тип аргумента и выбрасывает ArgumentException при несоответствии."""
         if not isinstance(value, expected_type):
-            raise ArgumentException(argument_name, f"Expected type {expected_type.__name__}")
+            raise ArgumentException(argument_name, f"Expected type {expected_type.__name__} but got {type(expected_type)}")
 
     @staticmethod
     def validate_conversion(value: float, conversion_factor: float):
