@@ -67,8 +67,8 @@ class Nomenclature(AbstractReference):
         
     def __eq__(self, other):
         if isinstance(other, Nomenclature):
-            return (self.__name == other.name and
-                    self.__full_name == other.full_name and
+            return (self.__name == other.name.lower() and
+                    self.__full_name == other.full_name.lower() and
                     self.__group == other.group and
                     self.__unit == other.unit)
         return NotImplemented
