@@ -12,7 +12,7 @@ from general.exception.Validator_wrapper import ValidatorWrapper
 class WarehouseTransaction(AbstractReference):
     __warehouse: WarehouseModel = WarehouseModel()
     __nomenclature: Nomenclature = Nomenclature()
-    __count: int = 0
+    __count: float = 0.0
     __unit: MeasurementUnit = MeasurementUnit()
     __period: datetime = datetime.now()
     __transaction_type: TransactionTypes = TransactionTypes.INCOME
@@ -21,7 +21,7 @@ class WarehouseTransaction(AbstractReference):
             self,
             warehouse: WarehouseModel = None,
             nomenclature: Nomenclature = None, 
-            count: int = 0,
+            count: float = 0.0,
             unit: MeasurementUnit = None,
             period: datetime = None,
             transaction_type: TransactionTypes = TransactionTypes.INCOME
@@ -33,8 +33,8 @@ class WarehouseTransaction(AbstractReference):
         if nomenclature:
             ValidatorWrapper.validate_type(nomenclature, Nomenclature, "Nomenclature")
             self.__nomenclature = nomenclature
-        
-        ValidatorWrapper.validate_type(count, int, "count")
+            
+        ValidatorWrapper.validate_type(count, float, "count")
         self.__count = count
         
         if unit:
@@ -74,8 +74,7 @@ class WarehouseTransaction(AbstractReference):
     
     @count.setter
     def count(self, value):
-        ValidatorWrapper.validate_type(value, int, "count")
-        ValidatorWrapper.validate_positive_integer(value, "value")
+        ValidatorWrapper.validate_type(value, float, "count")
         self.__count = value
 
     @property
