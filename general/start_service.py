@@ -121,8 +121,8 @@ class StartService(AbstractLogic):
             nomenclature = random.choice(nomenclatures)
             unit = random.choice(units)
 
-            count = random.randint(1, 100)
-            period = datetime.now() - timedelta(days=random.randint(0, 365))
+            count = random.uniform(0.1, 100.0)
+            period = datetime.now() - timedelta(days=random.randint(0, 2))
 
             transaction = WarehouseTransaction(
                 warehouse=warehouse,

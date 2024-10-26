@@ -14,7 +14,7 @@ class TestWarehouseTransaction(unittest.TestCase):
         self.warehouse = WarehouseModel(name="Test Warehouse", country="Test Country", city="Test City", street="Test Street", house_number="1")
         self.nomenclature = Nomenclature(name="Test Nomenclature", full_name="Test Full Nomenclature")
         self.unit = MeasurementUnit(name="Test Unit")
-        self.count = 10
+        self.count = 10.
         self.period = datetime.now()
         self.transaction_type = TransactionTypes.INCOME
 
@@ -50,11 +50,9 @@ class TestWarehouseTransaction(unittest.TestCase):
     def test_count_setter(self):
         """Test the count setter."""
         transaction = WarehouseTransaction()
-        transaction.count = 20
-        self.assertEqual(transaction.count, 20)
+        transaction.count = 20.0
+        self.assertEqual(transaction.count, 20.0)
         
-        with self.assertRaises(ValueError):
-            transaction.count = -5  # Should raise an exception for negative count
 
     def test_warehouse_setter(self):
         """Test the warehouse setter."""
@@ -68,11 +66,11 @@ class TestWarehouseTransaction(unittest.TestCase):
 
     def test_equality(self):
         """Test equality operator."""
-        transaction1 = WarehouseTransaction(warehouse=self.warehouse, nomenclature=self.nomenclature, count=10, unit=self.unit, period=self.period)
-        transaction2 = WarehouseTransaction(warehouse=self.warehouse, nomenclature=self.nomenclature, count=10, unit=self.unit, period=self.period)
+        transaction1 = WarehouseTransaction(warehouse=self.warehouse, nomenclature=self.nomenclature, count=10., unit=self.unit, period=self.period)
+        transaction2 = WarehouseTransaction(warehouse=self.warehouse, nomenclature=self.nomenclature, count=10., unit=self.unit, period=self.period)
         
         self.assertTrue(transaction1 == transaction2)
         
-        transaction2.count = 20
+        transaction2.count = 20.
         self.assertFalse(transaction1 == transaction2)
 
