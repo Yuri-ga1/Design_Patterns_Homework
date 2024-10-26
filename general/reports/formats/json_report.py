@@ -33,7 +33,7 @@ class JsonReport(AbstractReport):
             "__class__": obj.__class__.__name__  # Добавляем имя класса
         }
         for field in dir(obj):
-            if not field.startswith("_"):
+            if not field.startswith("_") and not callable(getattr(obj.__class__, field)):
                 value = getattr(obj, field)
                 
                 if isinstance(value, enum.EnumMeta):
