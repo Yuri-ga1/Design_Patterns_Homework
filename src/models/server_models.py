@@ -1,5 +1,5 @@
 from fastapi import Path, Query, Body
-from fastapi import Request
+from datetime import date
 
 from src.models.pydantic_models import *
 
@@ -24,3 +24,14 @@ class FilterDataModel:
 class TransactionFilterRequest:
     def __init__(self, filter: WarehouseNomenFilter = Body(...)):
         self.filter = filter
+        
+class TurnoverFilterRequest:
+    def __init__(
+        self,
+        filter: WarehouseNomenFilter = Body(...),
+        start_period: Optional[date] = Query(None, description="Period start (YYYY-MM-DD)"),
+        end_period: Optional[date] = Query(None, description="Period end (YYYY-MM-DD)"),
+    ):
+        self.filter = filter
+        self.start_period = start_period
+        self.end_period = end_period
