@@ -1,4 +1,6 @@
 import os
+import random
+from datetime import datetime, timedelta
 
 from general.abstract_files.abstract_logic import AbstractLogic
 from general.data_reposity import DataReposity
@@ -10,6 +12,10 @@ from general.recipes.recipe_manager import RecipeManager
 
 from src.models.Measurement_unit import MeasurementUnit
 from src.models.Nomenclature_group import NomenclatureGroup
+from src.models.warehouse_transaction import WarehouseTransaction
+from src.models.Warehouse import WarehouseModel
+
+from src.emuns.transaction_types import TransactionTypes
 
 
 """
@@ -52,7 +58,12 @@ class StartService(AbstractLogic):
             recipe_ing = self.__recipe_manager.recipe.ingredients
             ingredients.append(recipe_ing)
             
-        self.__reposity.data[self.__reposity.nomenclature_key()] = ingredients
+        
+        flat_ingredients = [item for sublist in ingredients for item in sublist]
+    
+        unique_ingredients = list(set(flat_ingredients))
+
+        self.__reposity.data[self.__reposity.nomenclature_key()] = unique_ingredients
             
 
     def __create_measurement_unit(self):
@@ -75,12 +86,64 @@ class StartService(AbstractLogic):
             receipts_list.append(self.__recipe_manager.recipe)
     
         self.__reposity.data[self.__reposity.recipe_key()] = receipts_list
+        
+    def __create_warehouse(self):
+        warehouse_list = []
+        warehouse_list.append(WarehouseModel(
+            name="Kolotushka",
+            country="Russia",
+            city="Irkutsk",
+            street="Pushkina",
+            house_number="6/A"
+        ))
+        
+        warehouse_list.append(WarehouseModel(
+            name="Pendos",
+            country="America",
+            city="New York",
+            street="Ethnikis aminis",
+            house_number="11"
+        ))
+        
+        self.__reposity.data[self.__reposity.warehouse_key()] = warehouse_list
+        
+    def __create_warehouse_transaction(self):
+        transactions = []
+        nomenclatures = self.__reposity.data[self.__reposity.nomenclature_key()]
+        units = self.__reposity.data[self.__reposity.unit_key()]
+        warehouses = self.__reposity.data[self.__reposity.warehouse_key()]
+        
+        transaction_types = list(TransactionTypes)
+    
+        for _ in range(20):
+            warehouse = random.choice(warehouses)
+            
+            nomenclature = random.choice(nomenclatures)
+            unit = random.choice(units)
+
+            count = random.uniform(0.1, 100.0)
+            period = datetime.now() - timedelta(days=random.randint(0, 2))
+
+            transaction = WarehouseTransaction(
+                warehouse=warehouse,
+                nomenclature=nomenclature,
+                count=count,
+                unit=unit,
+                period=period,
+                transaction_type=random.choice(transaction_types)
+            )
+
+            transactions.append(transaction)
+
+        self.__reposity.data[self.__reposity.warehouse_transaction_key()] = transactions
 
     def create(self):
         self.__create_nomenclature_groups()
         self.__create_measurement_unit()
         self.__create_nomenclature()
         self.__create_receipts()
+        self.__create_warehouse()
+        self.__create_warehouse_transaction()
 
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)    

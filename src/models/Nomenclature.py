@@ -12,9 +12,9 @@ class Nomenclature(AbstractReference):
     
     def __init__(self, name: str = "", full_name: str = "", group: NomenclatureGroup = None, unit: MeasurementUnit = None):
         if name:
-            self.__name = name
+            self.__name = name.lower()
         if full_name:
-            self.__full_name = full_name
+            self.__full_name = full_name.lower()
         if group:
             self.__group = group
         if unit:
@@ -29,7 +29,7 @@ class Nomenclature(AbstractReference):
         Validator.validate_type(value, str, 'name')
         Validator.validate_max_length(value.strip(), 50, 'name')
         
-        self.__name = value
+        self.__name = value.lower()
         
         
     @property
@@ -41,7 +41,7 @@ class Nomenclature(AbstractReference):
         Validator.validate_type(value, str, inspect.currentframe().f_code.co_name)
         Validator.validate_max_length(value.strip(), 255, inspect.currentframe().f_code.co_name)
         
-        self.__full_name = value
+        self.__full_name = value.lower()
         
     
     @property
@@ -66,5 +66,12 @@ class Nomenclature(AbstractReference):
         self.__unit = value
         
     def __eq__(self, other):
-        super().__eq__(other)
+        if isinstance(other, Nomenclature):
+            return (self.__name == other.name.lower() and
+                    self.__full_name == other.full_name.lower() and
+                    self.__group == other.group and
+                    self.__unit == other.unit)
+        return NotImplemented
         
+    def __hash__(self):
+        return hash((self.__name, self.__full_name, self.__group, self.__unit))

@@ -39,6 +39,14 @@ class DataReposity(AbstractLogic):
     def recipe_key() -> str:
         return "recipes"
     
+    @staticmethod
+    def warehouse_key() -> str:
+        return "warehouse"
+    
+    @staticmethod
+    def warehouse_transaction_key() -> str:
+        return "warehouse_transaction"
+    
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)    
     

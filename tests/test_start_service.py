@@ -20,7 +20,9 @@ class TestDataRepository(unittest.TestCase):
             DataReposity.nomenclature_key(): 0,
             DataReposity.group_key(): 0,
             DataReposity.unit_key(): 0,
-            DataReposity.recipe_key(): 0
+            DataReposity.recipe_key(): 0,
+            DataReposity.warehouse_key(): 0,
+            DataReposity.warehouse_transaction_key(): 0,
         }
     
         for key, min_length in keys_to_check.items():

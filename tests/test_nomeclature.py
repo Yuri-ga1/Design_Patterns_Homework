@@ -16,7 +16,7 @@ class TestNomenclature(unittest.TestCase):
     def test_set_name_valid(self):
         """Тестирование установки корректного значения для name."""
         self.nomenclature.name = "Valid Name"
-        self.assertEqual(self.nomenclature.name, "Valid Name")
+        self.assertEqual(self.nomenclature.name, "Valid Name".lower())
     
     def test_set_name_invalid_type(self):
         """Тестирование установки некорректного типа для name."""
@@ -32,7 +32,7 @@ class TestNomenclature(unittest.TestCase):
     def test_set_full_name_valid(self):
         """Тестирование установки корректного значения для full_name."""
         self.nomenclature.full_name = "Valid Full Name"
-        self.assertEqual(self.nomenclature.full_name, "Valid Full Name")
+        self.assertEqual(self.nomenclature.full_name, "Valid Full Name".lower())
     
     def test_set_full_name_invalid_type(self):
         """Тестирование установки некорректного типа для full_name."""

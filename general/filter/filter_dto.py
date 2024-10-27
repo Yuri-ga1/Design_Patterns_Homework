@@ -45,7 +45,7 @@ class FilterDTO(AbstractLogic):
         self.__type = value
 
     @staticmethod
-    def from_json(data: dict):
+    def create(data: dict):
         Validator.validate_type(data, dict, "data")
         try:
             name = data.get('name', "")
