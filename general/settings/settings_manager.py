@@ -55,6 +55,6 @@ class SettingsManager(AbstractManager):
         data.bic = "012345678"
         data.property_type = "01234"
         data.default_report_format = 'csv'
-        data.block_period = date(year=2024, month=1, day=10)
+        data.block_period = date(year=2024, month=10, day=1)
 
         return data
