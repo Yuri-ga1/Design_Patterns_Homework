@@ -26,11 +26,13 @@ class BlockPeriodTurnoverProcessor(AbstractProcess):
 
         for transaction in transactions:
             ValidatorWrapper.validate_type(transaction, WarehouseTransaction, "transactions in WarehouseTurnoverProcess")
+            transaction_period = transaction.period.date()
             
-            if transaction.period < self.__start_period and transaction.period > block_period:
+            if transaction_period < self.__start_period or transaction_period > block_period:
                 continue
             
             key = (transaction.warehouse.id, transaction.nomenclature.id, transaction.unit.id)
+            
             if key not in self.__turnovers:
                 self.__turnovers[key] = WarehouseTurnover(
                     warehouse=transaction.warehouse,
