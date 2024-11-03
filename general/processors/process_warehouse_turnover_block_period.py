@@ -15,14 +15,12 @@ from general.settings.settings_manager import SettingsManager
 from general.reports.report_factory import ReportFactory
 
 class BlockPeriodTurnoverProcessor(AbstractProcess):
-    __turnovers: dict = {}
     __start_period: date = date(year=1900, month=1, day=1)
     __setting_manager: SettingsManager = SettingsManager()
-    __factory: ReportFactory = ReportFactory()
     
     def process(self, transactions: List[WarehouseTransaction]):
         block_period = self.__setting_manager.settings.block_period
-        self.__turnovers = {}
+        turnovers = {}
 
         for transaction in transactions:
             ValidatorWrapper.validate_type(transaction, WarehouseTransaction, "transactions in WarehouseTurnoverProcess")
@@ -33,21 +31,16 @@ class BlockPeriodTurnoverProcessor(AbstractProcess):
             
             key = (transaction.warehouse.id, transaction.nomenclature.id, transaction.unit.id)
             
-            if key not in self.__turnovers:
-                self.__turnovers[key] = WarehouseTurnover(
+            if key not in turnovers:
+                turnovers[key] = WarehouseTurnover(
                     warehouse=transaction.warehouse,
                     nomenclature=transaction.nomenclature,
                     unit=transaction.unit
                 )
 
             if transaction.transaction_type == TransactionTypes.INCOME:
-                self.__turnovers[key].flow += transaction.count
+                turnovers[key].flow += transaction.count
             else:
-                self.__turnovers[key].flow -= transaction.count
+                turnovers[key].flow -= transaction.count
 
-        return list(self.__turnovers.values())
-    
-    def save(self, filename):
-        report = self.__factory.create(FormatReporting.JSON)
-        report.create(list(self.__turnovers.values()))
-        report.save_report("turnover_block_period", f'{filename}.json', FormatReporting.JSON)
+        return turnovers

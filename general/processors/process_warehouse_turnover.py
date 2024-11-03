@@ -9,7 +9,16 @@ from general.abstract_files.abstract_process import AbstractProcess
 from general.exception.Validator_wrapper import ValidatorWrapper
 
 class WarehouseTurnoverProcess(AbstractProcess):
-
+    __blocked_turnovers: dict = {}
+    
+    def __init__(
+        self,
+        turnovers: dict = None,
+    ):
+        if turnovers:
+            ValidatorWrapper.validate_type(turnovers, dict, "turnovers in BlockPeriodTurnoverProcessor __init__")
+            self.__blocked_turnovers = turnovers
+            
     def process(self, transactions: List[WarehouseTransaction]):
         turnovers = {}
 
@@ -28,5 +37,11 @@ class WarehouseTurnoverProcess(AbstractProcess):
                 turnovers[key].flow += transaction.count
             else:
                 turnovers[key].flow -= transaction.count
+                
+        for key, blocked_turnover in self.__blocked_turnovers.items():
+            if key in turnovers:
+                turnovers[key].flow += blocked_turnover.flow
+            else:
+                turnovers[key] = blocked_turnover
 
         return list(turnovers.values())

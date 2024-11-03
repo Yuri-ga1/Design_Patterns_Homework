@@ -34,6 +34,8 @@ class TestBlockPeriodTurnoverProcessor(unittest.TestCase):
         self.nomenclature_2 = self.reposity.data[DataReposity.nomenclature_key()][1]
         self.range_1 = self.reposity.data[DataReposity.unit_key()][0]
         self.range_2 = self.reposity.data[DataReposity.unit_key()][1]
+        
+        self.block_transactions = self.reposity.data[DataReposity.warehouse_transaction_key()]
 
         # Create fixed transactions for testing
         self.transactions = [
@@ -105,13 +107,15 @@ class TestBlockPeriodTurnoverProcessor(unittest.TestCase):
                 f.write(f"| {period} | {time:.4f} |\n")
 
     def measure_time(self, block_period):
-        start_time = datetime.now()
-        
         blocked_process = BlockPeriodTurnoverProcessor()
         self.manager.settings.block_period = block_period
-        test_transactions = self.reposity.data[DataReposity.warehouse_transaction_key()]
-        blocked_process.process(transactions=test_transactions)
+        self.reposity.data[DataReposity.warehouse_transaction_key()] = blocked_process.process(transactions=self.block_transactions)
         
+        test_transactions = self.reposity.data[DataReposity.warehouse_transaction_key()]
+        process = WarehouseTurnoverProcess(test_transactions)
+
+        start_time = datetime.now()
+        process.process(transactions=self.block_transactions)
         end_time = datetime.now()
 
         return (end_time - start_time).total_seconds()
