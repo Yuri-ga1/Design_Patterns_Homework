@@ -1,6 +1,8 @@
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 from src.emuns.format_reporting import FormatReporting
 
+from datetime import date
+
 class Settings:
     """
     Настройки
@@ -12,6 +14,7 @@ class Settings:
     __bic = ""
     __property_type = ""
     __default_report_format = ""
+    __block_period: date = ""
 
     @property
     def organization_name(self):
@@ -91,3 +94,13 @@ class Settings:
         Validator.validate_type(value, str, 'value')
         
         self.__default_report_format = value
+        
+    @property
+    def block_period(self):
+        return self.__block_period
+    
+    @block_period.setter
+    def block_period(self, value: date):
+        Validator.validate_type(value, date, 'block_period value')
+        
+        self.__block_period = value

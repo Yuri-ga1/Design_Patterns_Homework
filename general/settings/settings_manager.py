@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import date
 
 from .settings import Settings
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
@@ -54,5 +55,6 @@ class SettingsManager(AbstractManager):
         data.bic = "012345678"
         data.property_type = "01234"
         data.default_report_format = 'csv'
+        data.block_period = date(year=2024, month=1, day=10)
 
         return data
