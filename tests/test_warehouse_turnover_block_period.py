@@ -1,4 +1,5 @@
 import unittest
+import os
 from datetime import datetime, date
 
 from src.models.warehouse_transaction import WarehouseTransaction
@@ -7,6 +8,7 @@ from src.models.warehouse_turnover import WarehouseTurnover
 from src.emuns.transaction_types import TransactionTypes
 
 from general.processors.process_warehouse_turnover_block_period import BlockPeriodTurnoverProcessor
+from general.processors.process_warehouse_turnover import WarehouseTurnoverProcess
 from general.settings.settings_manager import SettingsManager
 from general.recipes.recipe_manager import RecipeManager
 from general.data_reposity import DataReposity
@@ -44,7 +46,6 @@ class TestBlockPeriodTurnoverProcessor(unittest.TestCase):
 
     def test_turnover_with_default_block_period(self):
         """Test flow calculation with transactions within a specific period."""
-        print("test 1")
         self.manager.settings.block_period = date(2024, 10, 1)
         process = BlockPeriodTurnoverProcessor()
         result = process.process(transactions=self.transactions)
@@ -70,10 +71,47 @@ class TestBlockPeriodTurnoverProcessor(unittest.TestCase):
             WarehouseTurnover(warehouse=self.warehouse_1, nomenclature=self.nomenclature_1, unit=self.range_1, flow=75.),
         ]
         
-        print(result[0].warehouse.name)
         self.assertEqual(len(result), len(expected_turnovers))
         for expected, actual in zip(expected_turnovers, result):
             self.assertEqual(expected.warehouse, actual.warehouse)
             self.assertEqual(expected.nomenclature, actual.nomenclature)
             self.assertEqual(expected.unit, actual.unit)
             self.assertEqual(expected.flow, actual.flow)
+            
+    def test_load_turnover_calculation(self):
+        """Load test for turnover calculation."""
+        block_periods = [
+            date(2024, 2, 1),
+            date(2024, 6, 1),
+            date(2024, 11, 1),
+        ]
+
+        results = {}
+
+        for block_period in block_periods:
+            elapsed_time = self.measure_time(block_period)
+            results[block_period.strftime("%Y-%m-%d")] = elapsed_time
+            
+        dir_path = "test_files"
+        os.makedirs(dir_path, exist_ok=True)
+        
+        file_path = os.path.join(dir_path, 'performance_results.md')
+        
+        with open(file_path, 'w', encoding="utf-8") as f:
+            f.write("# Результаты нагрузочного теста\n\n")
+            f.write("| Дата блокировки | Время расчета (с) |\n")
+            f.write("|------------------|-------------------|\n")
+            for period, time in results.items():
+                f.write(f"| {period} | {time:.4f} |\n")
+
+    def measure_time(self, block_period):
+        start_time = datetime.now()
+        
+        blocked_process = BlockPeriodTurnoverProcessor()
+        self.manager.settings.block_period = block_period
+        test_transactions = self.reposity.data[DataReposity.warehouse_transaction_key()]
+        blocked_process.process(transactions=test_transactions)
+        
+        end_time = datetime.now()
+
+        return (end_time - start_time).total_seconds()
