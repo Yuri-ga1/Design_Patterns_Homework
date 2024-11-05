@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import date
 
 from .settings import Settings
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
@@ -27,7 +28,7 @@ class SettingsManager(AbstractManager):
             self.__file_name = file_name
 
         try:
-            full_name = self.get_file_path(self.__file_name)
+            full_name = self._get_file_path(self.__file_name)
             if full_name is None:
                 self.__settings = self._default_value()
                 Validator.validate_file_exists(self.__file_name)
@@ -40,6 +41,19 @@ class SettingsManager(AbstractManager):
         except:
             self.__settings = self._default_value()
             return False
+
+    def save(self):
+        if not self.__settings:
+            self.__settings = self._default_value()
+
+        settings_dict = {attr: str(getattr(self.__settings, attr)) for attr in dir(self.__settings) if not attr.startswith('_')}
+
+        full_name = self._get_file_path(self.__file_name)
+
+        print(full_name)
+
+        with open(full_name, 'w', encoding='utf-8') as stream:
+            json.dump(settings_dict, stream, ensure_ascii=False, indent=4)
 
     @property
     def settings(self):
@@ -54,5 +68,6 @@ class SettingsManager(AbstractManager):
         data.bic = "012345678"
         data.property_type = "01234"
         data.default_report_format = 'csv'
+        data.block_period = date(year=2024, month=10, day=1)
 
         return data

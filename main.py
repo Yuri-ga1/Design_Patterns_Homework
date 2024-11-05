@@ -149,6 +149,21 @@ async def get_turnover(form_data: TurnoverFilterRequest = Depends()):
         
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
+    
+
+@app.post("/update_block_period")
+async def update_block_period(form_data: BlockPeriodForm = Depends()):
+    try:
+        block_period = form_data.block_period
+        settings_manager.settings.block_period = block_period
+        settings_manager.save()
+        return {"message": "Block period successfully updated"}
+    except:
+        HTTPException(status_code=500, detail="Failed to update block period")
+
+@app.get("/get_block_period")
+async def get_block_period():
+    return settings_manager.settings.block_period
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)

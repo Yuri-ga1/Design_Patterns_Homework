@@ -114,15 +114,21 @@ class StartService(AbstractLogic):
         warehouses = self.__reposity.data[self.__reposity.warehouse_key()]
         
         transaction_types = list(TransactionTypes)
+        
+        start_date = datetime(1900, 1, 1)
+        end_date = datetime(2024, 10, 1)
+        date_range_days = (end_date - start_date).days
     
-        for _ in range(20):
+        for _ in range(1_000_000):
             warehouse = random.choice(warehouses)
             
             nomenclature = random.choice(nomenclatures)
             unit = random.choice(units)
 
             count = random.uniform(0.1, 100.0)
-            period = datetime.now() - timedelta(days=random.randint(0, 2))
+            
+            random_day = random.randint(0, date_range_days)
+            period = start_date + timedelta(days=random_day)
 
             transaction = WarehouseTransaction(
                 warehouse=warehouse,

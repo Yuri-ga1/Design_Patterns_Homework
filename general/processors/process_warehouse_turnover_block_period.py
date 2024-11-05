@@ -1,31 +1,36 @@
 from typing import List
+from datetime import date
 
 from src.models.warehouse_turnover import WarehouseTurnover
 from src.models.warehouse_transaction import WarehouseTransaction
 
 from src.emuns.transaction_types import TransactionTypes
+from src.emuns.format_reporting import FormatReporting
 
 from general.abstract_files.abstract_process import AbstractProcess
 from general.exception.Validator_wrapper import ValidatorWrapper
 
-class WarehouseTurnoverProcess(AbstractProcess):
-    __blocked_turnovers: dict = {}
+from general.settings.settings_manager import SettingsManager
+
+from general.reports.report_factory import ReportFactory
+
+class BlockPeriodTurnoverProcessor(AbstractProcess):
+    __start_period: date = date(year=1900, month=1, day=1)
+    __setting_manager: SettingsManager = SettingsManager()
     
-    def __init__(
-        self,
-        turnovers: dict = None,
-    ):
-        if turnovers:
-            ValidatorWrapper.validate_type(turnovers, dict, "turnovers in BlockPeriodTurnoverProcessor __init__")
-            self.__blocked_turnovers = turnovers
-            
     def process(self, transactions: List[WarehouseTransaction]):
+        block_period = self.__setting_manager.settings.block_period
         turnovers = {}
 
         for transaction in transactions:
             ValidatorWrapper.validate_type(transaction, WarehouseTransaction, "transactions in WarehouseTurnoverProcess")
+            transaction_period = transaction.period.date()
+            
+            if transaction_period < self.__start_period or transaction_period > block_period:
+                continue
             
             key = (transaction.warehouse.id, transaction.nomenclature.id, transaction.unit.id)
+            
             if key not in turnovers:
                 turnovers[key] = WarehouseTurnover(
                     warehouse=transaction.warehouse,
@@ -37,11 +42,5 @@ class WarehouseTurnoverProcess(AbstractProcess):
                 turnovers[key].flow += transaction.count
             else:
                 turnovers[key].flow -= transaction.count
-                
-        for key, blocked_turnover in self.__blocked_turnovers.items():
-            if key in turnovers:
-                turnovers[key].flow += blocked_turnover.flow
-            else:
-                turnovers[key] = blocked_turnover
 
-        return list(turnovers.values())
+        return turnovers

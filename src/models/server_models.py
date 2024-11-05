@@ -35,3 +35,10 @@ class TurnoverFilterRequest:
         self.filter = filter
         self.start_period = start_period
         self.end_period = end_period
+        
+class BlockPeriodForm:
+    def __init__(
+        self,
+        block_period: date = Query(None, description="Block period (YYYY-MM-DD)")
+    ):
+        self.block_period = block_period
