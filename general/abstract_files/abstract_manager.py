@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 
 class AbstractManager(ABC):
     _instance = None
+    __banned_dirs = ['.vscode']
 
     def __new__(cls):
         if cls._instance is None:
@@ -21,7 +22,12 @@ class AbstractManager(ABC):
     @staticmethod
     def _get_file_path(filename: str):
         curdir = os.curdir
+        banned_dirs = AbstractManager.__banned_dirs
+        
         for address, dirs, files in os.walk(curdir):
+            if any(banned_dir in address for banned_dir in banned_dirs):
+                continue
+        
             filepath = os.path.join(address, filename)
             if os.path.isfile(filepath):
                 return filepath
