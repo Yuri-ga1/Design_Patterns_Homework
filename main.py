@@ -156,6 +156,7 @@ async def update_block_period(form_data: BlockPeriodForm = Depends()):
     try:
         block_period = form_data.block_period
         settings_manager.settings.block_period = block_period
+        settings_manager.save()
         return {"message": "Block period successfully updated"}
     except:
         HTTPException(status_code=500, detail="Failed to update block period")
