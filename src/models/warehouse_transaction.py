@@ -17,38 +17,23 @@ class WarehouseTransaction(AbstractReference):
     __period: datetime = datetime.now()
     __transaction_type: TransactionTypes = TransactionTypes.INCOME
     
-    def __init__(
-            self,
-            warehouse: WarehouseModel = None,
-            nomenclature: Nomenclature = None, 
-            count: float = 0.0,
-            unit: MeasurementUnit = None,
-            period: datetime = None,
-            transaction_type: TransactionTypes = TransactionTypes.INCOME
-        ):
-        if warehouse:
-            ValidatorWrapper.validate_type(warehouse, WarehouseModel, "WarehouseModel")
-            self.__warehouse = warehouse
-        
-        if nomenclature:
-            ValidatorWrapper.validate_type(nomenclature, Nomenclature, "Nomenclature")
-            self.__nomenclature = nomenclature
-            
-        ValidatorWrapper.validate_type(count, float, "count")
-        self.__count = count
-        
-        if unit:
-            ValidatorWrapper.validate_type(unit, MeasurementUnit, "MeasurementUnit")
-            self.__unit = unit
-        
-        if period:
-            ValidatorWrapper.validate_type(period, datetime, "period")
-            self.__period = period
-            
-        if transaction_type:
-            ValidatorWrapper.validate_type(transaction_type, TransactionTypes, "transaction_type")
-            ValidatorWrapper.validate_format_in_enum(transaction_type.value, TransactionTypes, "transaction_type")
-            self.__transaction_type = transaction_type
+    @staticmethod
+    def create(
+        warehouse: WarehouseModel,
+        nomenclature: Nomenclature,
+        unit: MeasurementUnit,
+        count: float = 0.0,
+        period: datetime = datetime.now(),
+        transaction_type: TransactionTypes = TransactionTypes.INCOME,
+    ):
+        transaction = WarehouseTransaction()
+        transaction.warehouse = warehouse
+        transaction.nomenclature = nomenclature
+        transaction.unit = unit
+        transaction.count = count
+        transaction.period = period
+        transaction.transaction_type = transaction_type
+        return transaction
 
     @property
     def warehouse(self):

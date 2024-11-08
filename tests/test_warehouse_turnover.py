@@ -38,11 +38,11 @@ class TestWarehouseTurnoverProcess(unittest.TestCase):
 
         # Create fixed transactions for testing
         self.transactions = [
-            WarehouseTransaction(period=datetime(2024, 10, 23), warehouse=self.warehouse_1, nomenclature=self.nomenclature_1, unit=self.range_1, count=100., transaction_type=TransactionTypes.INCOME),
-            WarehouseTransaction(period=datetime(2024, 10, 30), warehouse=self.warehouse_1, nomenclature=self.nomenclature_1, unit=self.range_1, count=50., transaction_type=TransactionTypes.EXPENSE),
-            WarehouseTransaction(period=datetime(2024, 10, 1), warehouse=self.warehouse_1, nomenclature=self.nomenclature_1, unit=self.range_1, count=25., transaction_type=TransactionTypes.EXPENSE),
-            WarehouseTransaction(period=datetime(2024, 10, 20), warehouse=self.warehouse_2, nomenclature=self.nomenclature_2, unit=self.range_2, count=200., transaction_type=TransactionTypes.INCOME),
-            WarehouseTransaction(period=datetime(2024, 10, 21), warehouse=self.warehouse_2, nomenclature=self.nomenclature_2, unit=self.range_2, count=100., transaction_type=TransactionTypes.EXPENSE),
+            WarehouseTransaction.create(period=datetime(2024, 10, 23), warehouse=self.warehouse_1, nomenclature=self.nomenclature_1, unit=self.range_1, count=100., transaction_type=TransactionTypes.INCOME),
+            WarehouseTransaction.create(period=datetime(2024, 10, 30), warehouse=self.warehouse_1, nomenclature=self.nomenclature_1, unit=self.range_1, count=50., transaction_type=TransactionTypes.EXPENSE),
+            WarehouseTransaction.create(period=datetime(2024, 10, 1), warehouse=self.warehouse_1, nomenclature=self.nomenclature_1, unit=self.range_1, count=25., transaction_type=TransactionTypes.EXPENSE),
+            WarehouseTransaction.create(period=datetime(2024, 10, 20), warehouse=self.warehouse_2, nomenclature=self.nomenclature_2, unit=self.range_2, count=200., transaction_type=TransactionTypes.INCOME),
+            WarehouseTransaction.create(period=datetime(2024, 10, 21), warehouse=self.warehouse_2, nomenclature=self.nomenclature_2, unit=self.range_2, count=100., transaction_type=TransactionTypes.EXPENSE),
         ]
 
     def test_turnover_within_period(self):

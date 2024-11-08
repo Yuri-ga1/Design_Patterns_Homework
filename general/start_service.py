@@ -124,7 +124,7 @@ class StartService(AbstractLogic):
             count = random.uniform(0.1, 100.0)
             period = datetime.now() - timedelta(days=random.randint(0, 2))
 
-            transaction = WarehouseTransaction(
+            transaction = WarehouseTransaction.create(
                 warehouse=warehouse,
                 nomenclature=nomenclature,
                 count=count,
