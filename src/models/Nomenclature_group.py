@@ -34,7 +34,7 @@ class NomenclatureGroup(AbstractReference):
         return item
     
     """
-    Default группа - замарозка (фабричный метод)
+    Default группа - заморозка (фабричный метод)
     """
     @staticmethod
     def default_group_cold():
