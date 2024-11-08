@@ -11,7 +11,7 @@ class TestWarehouseTransaction(unittest.TestCase):
     
     def setUp(self):
         """Set up test variables for each test."""
-        self.warehouse = WarehouseModel(name="Test Warehouse", country="Test Country", city="Test City", street="Test Street", house_number="1")
+        self.warehouse = WarehouseModel.create(name="Test Warehouse", country="Test Country", city="Test City", street="Test Street", house_number="1")
         self.nomenclature = Nomenclature(name="Test Nomenclature", full_name="Test Full Nomenclature")
         self.unit = MeasurementUnit(name="Test Unit")
         self.count = 10.

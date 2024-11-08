@@ -46,7 +46,7 @@ class TestWarehouseModel(unittest.TestCase):
 
     def test_equality_same_address(self):
         """Тестирование оператора равенства для объектов с одинаковыми данными."""
-        other_warehouse = WarehouseModel(
+        other_warehouse = WarehouseModel.create(
             name="Main Warehouse",
             country="USA",
             city="New York",
@@ -62,7 +62,7 @@ class TestWarehouseModel(unittest.TestCase):
 
     def test_equality_different_address(self):
         """Тестирование оператора равенства для объектов с разными данными."""
-        other_warehouse = WarehouseModel(
+        other_warehouse = WarehouseModel.create(
             name="Secondary Warehouse",
             country="Canada",
             city="Toronto",

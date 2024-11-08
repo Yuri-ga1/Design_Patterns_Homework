@@ -89,7 +89,7 @@ class StartService(AbstractLogic):
         
     def __create_warehouse(self):
         warehouse_list = []
-        warehouse_list.append(WarehouseModel(
+        warehouse_list.append(WarehouseModel.create(
             name="Kolotushka",
             country="Russia",
             city="Irkutsk",
@@ -97,7 +97,7 @@ class StartService(AbstractLogic):
             house_number="6/A"
         ))
         
-        warehouse_list.append(WarehouseModel(
+        warehouse_list.append(WarehouseModel.create(
             name="Pendos",
             country="America",
             city="New York",
