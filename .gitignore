@@ -163,3 +163,4 @@ cython_debug/
 
 #my own folder
 TestReportGeneration_folder/
+test_files/performance_results.md
