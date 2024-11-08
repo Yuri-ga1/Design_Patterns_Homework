@@ -119,7 +119,7 @@ class StartService(AbstractLogic):
         end_date = datetime(2024, 10, 1)
         date_range_days = (end_date - start_date).days
     
-        for _ in range(1_000_000):
+        for _ in range(500):
             warehouse = random.choice(warehouses)
             
             nomenclature = random.choice(nomenclatures)

@@ -69,6 +69,9 @@ class FilterDTO(AbstractLogic):
 
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)
+        
+    def handle_event(self, type, params):
+        return super().handle_event(type, params)
 
     def __eq__(self, other):
         if isinstance(other, FilterDTO):
