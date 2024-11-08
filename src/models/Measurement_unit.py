@@ -4,14 +4,19 @@ from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 class MeasurementUnit(AbstractReference):
     __name = ""
     __unit: 'MeasurementUnit' = None
-    __conversion_rate: 'MeasurementUnit | int' = 1
-
-    def __init__(self, name: str = "", unit: 'MeasurementUnit' = None, conversion_rate: 'MeasurementUnit | int' = 1):
-        if name:
-            Validator.validate_type(name, str, "name")
-            self.name = name
-        if unit:
-            self.set_base_unit(unit, conversion_rate)
+    __conversion_rate: 'MeasurementUnit | int'
+    
+    @staticmethod
+    def create(
+        name: str,
+        unit: 'MeasurementUnit' = None,
+        conversion_rate: 'MeasurementUnit | int' = 1
+    ):
+        meas_unit = MeasurementUnit()
+        meas_unit.name = name
+        meas_unit.unit = unit
+        meas_unit.conversion_rate = conversion_rate
+        return meas_unit
 
     @property
     def name(self):
@@ -72,27 +77,27 @@ class MeasurementUnit(AbstractReference):
     
     @staticmethod
     def default_unit_gramm():
-        gramm = MeasurementUnit("Грамм")
+        gramm = MeasurementUnit.create("Грамм")
         return gramm
     
     @staticmethod
     def default_unit_kg():
         gramm = MeasurementUnit.default_unit_gramm()
-        kg = MeasurementUnit("Килограмм", gramm, 1000)
+        kg = MeasurementUnit.create("Килограмм", gramm, 1000)
         return kg
     
     @staticmethod
     def default_unit_thing():
-        thing = MeasurementUnit("Штука")
+        thing = MeasurementUnit.create("Штука")
         return thing
     
     @staticmethod
     def default_unit_teaspoon():
-        teaspoon = MeasurementUnit("Чайная ложка")
+        teaspoon = MeasurementUnit.create("Чайная ложка")
         return teaspoon
     
     @staticmethod
     def default_unit_tablespoon():
         teaspoon = MeasurementUnit.default_unit_teaspoon()
-        tablespoon = MeasurementUnit("Столовая ложка", teaspoon, 3)
+        tablespoon = MeasurementUnit.create("Столовая ложка", teaspoon, 3)
         return tablespoon
