@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 
 import uvicorn
 
-from src.models.server_models import *
+from api.models.server_models import *
 
 from src.emuns.format_reporting import FormatReporting
 
@@ -20,6 +20,8 @@ from general.prototypes.warehouse_transaction_prototype import WarehouseTransact
 from general.processors.process_factory import ProcessFactory
 from general.processors.process_warehouse_turnover import WarehouseTurnoverProcess
 
+from api.nomeclature_api import router as nomen_router
+
 
 settings_manager = SettingsManager()
 reposity = DataReposity()
@@ -28,6 +30,8 @@ service = StartService(reposity, settings_manager, recipe_manager)
 service.create()
 
 app = FastAPI()
+
+app.include_router(nomen_router)
 
 # Маршрут для получения форматов отчетов
 @app.get("/report_formats")
