@@ -1,11 +1,14 @@
 import json
-import os
 
 from .settings import Settings
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
-from general.abstract_files.abstract_manager import AbstractManager
 
-class SettingsManager(AbstractManager):
+from src.emuns.event_types import EventType
+
+from general.abstract_files.abstract_manager import AbstractManager
+from general.abstract_files.abstract_logic import AbstractLogic
+
+class SettingsManager(AbstractManager, AbstractLogic):
     __file_name = "settings.json"
     __settings: Settings = None
 
@@ -56,3 +59,13 @@ class SettingsManager(AbstractManager):
         data.default_report_format = 'csv'
 
         return data
+
+
+    def set_exception(self, ex):
+        return super().set_exception(ex)
+    
+    def handle_event(self, type: EventType, params):
+        super().handle_event(type, params)
+        match type:
+            case EventType.CHANGE_BLOCK_PERIOD:
+                self.save()

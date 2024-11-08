@@ -5,7 +5,9 @@ from general.filter.filter_dto import FilterDTO
 
 from general.domain_prototype import DomainPrototype
 from src.models.Nomenclature import Nomenclature
+
 from src.emuns.filter_types import FilterTypes
+from src.emuns.event_types import EventType
 
 
 class NomenclatureService(AbstractLogic):
@@ -196,3 +198,12 @@ class NomenclatureService(AbstractLogic):
 
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)
+        
+    def handle_event(self, type: EventType, params):
+        super().handle_event(type, params)
+        match type:
+            case EventType.CHANGE_NOMENCLATURE:
+                return self.update(params)
+            case EventType.DELETE_NOMENCLATURE:
+                return self.delete(params)
+        return {"Status": "Something went wrong"}
