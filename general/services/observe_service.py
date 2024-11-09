@@ -16,7 +16,10 @@ class ObserverService:
 
     @staticmethod
     def raise_event(type: EventType, params):
+        statuses = {}
         for instance in ObserverService.observers:
             if instance is not None:
-                instance.handle_event(type, params)
+                status = instance.handle_event(type, params)
+                statuses[type(instance).__name__] = status
+        return statuses
     

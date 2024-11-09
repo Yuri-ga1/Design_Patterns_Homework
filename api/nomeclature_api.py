@@ -4,8 +4,10 @@ from general.services.nomenclature_service import NomenclatureService
 from general.data_reposity import DataReposity
 from general.reports.report_factory import ReportFactory
 from general.settings.settings_manager import SettingsManager
+from general.services.observe_service import ObserverService
 
 from src.emuns.format_reporting import FormatReporting
+from src.emuns.event_types import EventType
 
 from api.models.pydantic_models import NomenclaturePydantic, NomenclatureWithUniqueCode
 
@@ -46,17 +48,26 @@ async def add_nomeclature(
 async def delete_nomeclature(
     unique_code: str = Query(..., description="Nomenclature id")
 ):
-    return nomenclature_service.delete(unique_code=unique_code)
+    statuses = ObserverService.raise_event(type=EventType.DELETE_NOMENCLATURE, params=unique_code)
+    return statuses[type(nomenclature_service).__name__]
 
 @router.patch("/")
 async def patch_nomeclature(
     update_nomeclature: NomenclatureWithUniqueCode = Body(description="Update nomenclature by id")
 ):
-    result = nomenclature_service.update(
-        unique_code=update_nomeclature.unique_code,
-        name=update_nomeclature.name,
-        full_name=update_nomeclature.full_name,
-        group_id=update_nomeclature.group_id,
-        unit_id=update_nomeclature.unit_id,
-    )
-    return result
+    # result = nomenclature_service.update(
+    #     unique_code=update_nomeclature.unique_code,
+    #     name=update_nomeclature.name,
+    #     full_name=update_nomeclature.full_name,
+    #     group_id=update_nomeclature.group_id,
+    #     unit_id=update_nomeclature.unit_id,
+    # )
+    params = {
+        "unique_code": update_nomeclature.unique_code,
+        "name": update_nomeclature.name,
+        "full_name": update_nomeclature.full_name,
+        "group_id": update_nomeclature.group_id,
+        "unit_id": update_nomeclature.unit_id,
+    }
+    statuses = ObserverService.raise_event(type=EventType.CHANGE_NOMENCLATURE, params=params)
+    return statuses[type(nomenclature_service).__name__]

@@ -6,6 +6,7 @@ import uvicorn
 from api.models.server_models import *
 
 from src.emuns.format_reporting import FormatReporting
+from src.emuns.event_types import EventType
 
 from general.reports.report_factory import ReportFactory
 from general.settings.settings_manager import SettingsManager
@@ -14,6 +15,7 @@ from general.domain_prototype import DomainPrototype
 from general.filter.filter_dto import FilterDTO
 from general.start_service import StartService
 from general.data_reposity import DataReposity
+from general.services.observe_service import ObserverService
 
 from general.filter.filter_warehouse_nomenclature_dto import WarehouseNomenclatureFilterDTO
 from general.prototypes.warehouse_transaction_prototype import WarehouseTransactionPrototype
@@ -28,6 +30,8 @@ reposity = DataReposity()
 recipe_manager = RecipeManager()
 service = StartService(reposity, settings_manager, recipe_manager)
 service.create()
+
+observer_service = ObserverService()
 
 app = FastAPI()
 
@@ -160,7 +164,7 @@ async def update_block_period(form_data: BlockPeriodForm = Depends()):
     try:
         block_period = form_data.block_period
         settings_manager.settings.block_period = block_period
-        settings_manager.save()
+        observer_service.raise_event(type=EventType.CHANGE_BLOCK_PERIOD, params=None)
         return {"message": "Block period successfully updated"}
     except:
         HTTPException(status_code=500, detail="Failed to update block period")

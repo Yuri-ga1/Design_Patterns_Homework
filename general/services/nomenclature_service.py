@@ -54,13 +54,8 @@ class NomenclatureService(AbstractLogic):
             )
         return filtered
     
-    def update(self, unique_code, name, full_name, group_id, unit_id):
-        params={
-            'name': name,
-            'full_name': full_name,
-            'group_id': group_id,
-            'unit_id': unit_id, 
-        }
+    def update(self, params):
+        unique_code = params["unique_code"]
         
         nomenclature = self.get(unique_code=unique_code)
         
