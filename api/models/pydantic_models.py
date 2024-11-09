@@ -1,10 +1,7 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, Union
 from src.emuns.filter_types import FilterTypes
 
-from src.models.Nomenclature import Nomenclature
-from src.models.Nomenclature_group import NomenclatureGroup
-from src.models.Measurement_unit import MeasurementUnit
 
 class FilterDTOModel(BaseModel):
     name: str | None = None
@@ -21,12 +18,23 @@ class WarehouseNomenFilter(BaseModel):
     nomenclature: Optional[OptionalFilterDTOModel] = None
 
 
+class UnitPydantic(BaseModel):
+    unique_code: str
+    name: str
+    base_unit: Optional['UnitPydantic'] = None
+    conversion_rate: Union[int, 'UnitPydantic']
+
+class GroupPydantic(BaseModel):
+    unique_code: str
+    name: str
+
+
 class NomenclaturePydantic(BaseModel):
     name: str
     full_name: str
-    group_id: str
-    unit_id: str
-    
+    group: GroupPydantic
+    unit: UnitPydantic 
+
 class NomenclatureWithUniqueCode(BaseModel):
     unique_code: str
     name: Optional[str] = None

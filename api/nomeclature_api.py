@@ -36,11 +36,13 @@ async def get_nomeclature(
 async def add_nomeclature(
     new_nomeclature: NomenclaturePydantic = Body(description="New nomenclature data")
 ):
+    group_id = new_nomeclature.group.unique_code
+    unit_id = new_nomeclature.unit.unique_code
     result = nomenclature_service.add(
         name=new_nomeclature.name,
         full_name=new_nomeclature.full_name,
-        group_id=new_nomeclature.group_id,
-        unit_id=new_nomeclature.unit_id,
+        group_id=group_id,
+        unit_id=unit_id,
     )
     return result
 
