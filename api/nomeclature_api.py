@@ -55,13 +55,6 @@ async def delete_nomeclature(
 async def patch_nomeclature(
     update_nomeclature: NomenclatureWithUniqueCode = Body(description="Update nomenclature by id")
 ):
-    # result = nomenclature_service.update(
-    #     unique_code=update_nomeclature.unique_code,
-    #     name=update_nomeclature.name,
-    #     full_name=update_nomeclature.full_name,
-    #     group_id=update_nomeclature.group_id,
-    #     unit_id=update_nomeclature.unit_id,
-    # )
     params = {
         "unique_code": update_nomeclature.unique_code,
         "name": update_nomeclature.name,
