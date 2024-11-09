@@ -2,8 +2,8 @@ import unittest
 from unittest.mock import MagicMock, patch
 from general.services.nomenclature_service import NomenclatureService
 from general.data_reposity import DataReposity
-from src.models.Nomenclature import Nomenclature
 from general.filter.filter_dto import FilterDTO
+from src.models.Nomenclature import Nomenclature
 
 class TestNomenclatureService(unittest.TestCase):
 
@@ -45,24 +45,31 @@ class TestNomenclatureService(unittest.TestCase):
 
     def test_update_nomenclature_success(self):
         mock_nomenclature = MagicMock()
+        params = {
+            "unique_code": "UniqueCode",
+            "name": "UpdatedName",
+            "full_name": "UpdatedFullName",
+            "group_id": "GroupID",
+            "unit_id": "UnitID"
+        }
         self.service.get = MagicMock(return_value=mock_nomenclature)
         self.service.update_nomenclature = MagicMock()
-        self.service.update_nomenclature_in_recipes = MagicMock()
-        self.service.update_nomenclature_in_transactions = MagicMock()
 
-        result = self.service.update("UniqueCode", "UpdatedName", "UpdatedFullName", "GroupID", "UnitID")
-        
+        result = self.service.update(params)
+
         self.assertEqual(result, {"message": f"Nomenclature with id UniqueCode updated successfully"})
-        self.service.update_nomenclature.assert_called_once_with(mock_nomenclature, {
-            'name': "UpdatedName",
-            'full_name': "UpdatedFullName",
-            'group_id': "GroupID",
-            'unit_id': "UnitID"
-        })
+        self.service.update_nomenclature.assert_called_once_with(mock_nomenclature, params)
 
     def test_update_nomenclature_not_exist(self):
+        params = {
+            "unique_code": "InvalidCode",
+            "name": "Name",
+            "full_name": "FullName",
+            "group_id": "GroupID",
+            "unit_id": "UnitID"
+        }
         self.service.get = MagicMock(return_value=None)
-        result = self.service.update("InvalidCode", "Name", "FullName", "GroupID", "UnitID")
+        result = self.service.update(params)
         self.assertEqual(result, {"message": f"Nomenclature with id InvalidCode is not exist"})
 
     def test_delete_nomenclature_success(self):
