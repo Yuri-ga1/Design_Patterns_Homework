@@ -2,6 +2,7 @@ from general.data_reposity import DataReposity
 from general.abstract_files.abstract_logic import AbstractLogic
 from general.exception.Validator_wrapper import ValidatorWrapper
 from general.filter.filter_dto import FilterDTO
+from general.services.observe_service import ObserverService
 
 from general.domain_prototype import DomainPrototype
 from src.models.Nomenclature import Nomenclature
@@ -66,9 +67,9 @@ class NomenclatureService(AbstractLogic):
             nomenclature=nomenclature,
             params=params
         )
-            
-        self.update_nomenclature_in_recipes(unique_code, params)
-        self.update_nomenclature_in_transactions(unique_code, params)
+        
+        ObserverService.raise_event(type=EventType.CHANGE_NOMECLATURE_RECIPES, params=params)
+        ObserverService.raise_event(type=EventType.CHANGE_NOMECLATURE_TRANSACTIONS, params=params)
         
         return {"message": f"Nomenclature with id {unique_code} updated successfully"}
              
@@ -157,17 +158,28 @@ class NomenclatureService(AbstractLogic):
             nomenclature.unit = unit
             
     
-    def update_nomenclature_in_recipes(self, unique_code, params):
-        recipes = self.reposity.data[DataReposity.recipe_key()]
-        for recipe in recipes:
-            self.has_nomenclature(recipe, unique_code, params)
+    def update_nomenclature_in_recipes(self, params):
+        try:
+            unique_code = params["unique_code"]
+            recipes = self.reposity.data[DataReposity.recipe_key()]
+            for recipe in recipes:
+                self.has_nomenclature(recipe, unique_code, params)
+            return {"Status": f"Nomenclature with id {unique_code} was successfully updated in recipes"}
+        except Exception as e:
+            return {"Status": f"Something went wrong while updating nomenclature with id {unique_code} in recipes.\nException: {e}"}
             
             
     
-    def update_nomenclature_in_transactions(self, unique_code, params):
-        transactions = self.reposity.data[DataReposity.warehouse_transaction_key()]
-        for transaction in transactions:
-            self.has_nomenclature(transaction, unique_code, params)
+    def update_nomenclature_in_transactions(self, params):
+        try:
+            unique_code = params["unique_code"]
+            transactions = self.reposity.data[DataReposity.warehouse_transaction_key()]
+            for transaction in transactions:
+                self.has_nomenclature(transaction, unique_code, params)
+            return {"Status": f"Nomenclature with id {unique_code} was successfully updated in transactions"}
+        except Exception as e:
+            return {"Status": f"Something went wrong while updating nomenclature with id {unique_code} in transactions.\nException: {e}"}
+            
     
     def has_nomenclature(self, obj, unique_code, params):
         if hasattr(obj, 'id') and obj.id == unique_code:
@@ -201,4 +213,8 @@ class NomenclatureService(AbstractLogic):
                 return self.update(params)
             case EventType.DELETE_NOMENCLATURE:
                 return self.delete(params)
-        return {"Status": "Something went wrong"}
+            case EventType.CHANGE_NOMECLATURE_RECIPES:
+                return self.update_nomenclature_in_recipes(params)
+            case EventType.CHANGE_NOMECLATURE_TRANSACTIONS:
+                return self.update_nomenclature_in_transactions(params)
+        return {"Status": f"Type {type} is incorrect for NomenclatureService"}
