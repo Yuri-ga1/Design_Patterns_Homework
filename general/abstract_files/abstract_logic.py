@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+from general.exception.Validator_wrapper import ValidatorWrapper
+from src.emuns.event_types import EventType
 
 class AbstractLogic(ABC):
     __error_text: str = ""
@@ -27,4 +29,9 @@ class AbstractLogic(ABC):
     @abstractmethod
     def set_exception(self, ex: Exception):
         pass
+    
+    
+    @abstractmethod
+    def handle_event(self, type: EventType, params):
+        ValidatorWrapper.validate_type(type, EventType, "type")
      

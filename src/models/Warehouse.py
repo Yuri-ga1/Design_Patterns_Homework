@@ -7,35 +7,23 @@ class WarehouseModel(AbstractReference):
     __city: str = ""
     __street: str = ""
     __house_number: str = ""
-
-    def __init__(
-        self,
-        name: str = None,
-        country: str = None,
-        city: str = None,
-        street: str = None,
-        house_number: str = None
-    ):
-        if name:
-            ValidatorWrapper.validate_type(name, str, "Warehouse name")
-            ValidatorWrapper.validate_max_length(name, 50, "Warehouse name")
-            self.__name = name.strip()
-
-        if country:
-            ValidatorWrapper.validate_type(country, str, "Country")
-            self.__country = country.strip()
-
-        if city:
-            ValidatorWrapper.validate_type(city, str, "City")
-            self.__city = city.strip()
-
-        if street:
-            ValidatorWrapper.validate_type(street, str, "Street")
-            self.__street = street.strip()
-
-        if house_number:
-            ValidatorWrapper.validate_type(house_number, str, "House number")
-            self.__house_number = house_number.strip()
+    
+    @staticmethod
+    def create(
+        name: str,
+        country: str,
+        city: str,
+        street: str,
+        house_number: str
+    ):  
+        warehouse = WarehouseModel()
+        warehouse.name = name
+        warehouse.country = country
+        warehouse.city = city
+        warehouse.street = street
+        warehouse.house_number = house_number
+        return warehouse
+    
 
     @property
     def name(self):

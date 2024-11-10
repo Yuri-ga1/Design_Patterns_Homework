@@ -1,7 +1,7 @@
 from fastapi import Path, Query, Body
 from datetime import date
 
-from src.models.pydantic_models import *
+from api.models.pydantic_models import *
 
 class CreateReportModel:
     def __init__(

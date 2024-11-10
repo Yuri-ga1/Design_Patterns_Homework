@@ -54,8 +54,8 @@ class TestJsonDeserializer(unittest.TestCase):
 
     def test_deserialize_recipe_report_json(self):
         expected_ingredients = [
-            Nomenclature(name="Пшеничная мука", group=NomenclatureGroup.default_group_source(), unit=MeasurementUnit.default_unit_kg()),
-            Nomenclature(name="Сахар", group=NomenclatureGroup.default_group_source(), unit=MeasurementUnit.default_unit_teaspoon())
+            Nomenclature.create(name="Пшеничная мука", full_name="Пшеничная мука", group=NomenclatureGroup.default_group_source(), unit=MeasurementUnit.default_unit_kg()),
+            Nomenclature.create(name="Сахар", full_name="Сахар", group=NomenclatureGroup.default_group_source(), unit=MeasurementUnit.default_unit_teaspoon())
         ]
         
         expected_recipe = Recipe()

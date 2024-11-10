@@ -89,7 +89,7 @@ class StartService(AbstractLogic):
         
     def __create_warehouse(self):
         warehouse_list = []
-        warehouse_list.append(WarehouseModel(
+        warehouse_list.append(WarehouseModel.create(
             name="Kolotushka",
             country="Russia",
             city="Irkutsk",
@@ -97,7 +97,7 @@ class StartService(AbstractLogic):
             house_number="6/A"
         ))
         
-        warehouse_list.append(WarehouseModel(
+        warehouse_list.append(WarehouseModel.create(
             name="Pendos",
             country="America",
             city="New York",
@@ -119,7 +119,7 @@ class StartService(AbstractLogic):
         end_date = datetime(2024, 10, 1)
         date_range_days = (end_date - start_date).days
     
-        for _ in range(1_000_000):
+        for _ in range(500):
             warehouse = random.choice(warehouses)
             
             nomenclature = random.choice(nomenclatures)
@@ -130,7 +130,7 @@ class StartService(AbstractLogic):
             random_day = random.randint(0, date_range_days)
             period = start_date + timedelta(days=random_day)
 
-            transaction = WarehouseTransaction(
+            transaction = WarehouseTransaction.create(
                 warehouse=warehouse,
                 nomenclature=nomenclature,
                 count=count,
@@ -154,4 +154,6 @@ class StartService(AbstractLogic):
     def set_exception(self, ex: Exception):
         self._inner_set_exception(ex)    
 
+    def handle_event(self, type, params):
+        return super().handle_event(type, params)
 

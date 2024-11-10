@@ -7,18 +7,22 @@ import inspect
 class Nomenclature(AbstractReference):
     __name = ""
     __full_name = ""
-    __group: NomenclatureGroup = ""
-    __unit: MeasurementUnit = ""
+    __group: NomenclatureGroup
+    __unit: MeasurementUnit
     
-    def __init__(self, name: str = "", full_name: str = "", group: NomenclatureGroup = None, unit: MeasurementUnit = None):
-        if name:
-            self.__name = name.lower()
-        if full_name:
-            self.__full_name = full_name.lower()
-        if group:
-            self.__group = group
-        if unit:
-            self.__unit = unit
+    @staticmethod
+    def create(
+      name: str,
+      full_name: str,  
+      group: NomenclatureGroup,  
+      unit: MeasurementUnit,  
+    ):
+        nom = Nomenclature()
+        nom.name = name
+        nom.full_name = full_name
+        nom.group = group
+        nom.unit = unit
+        return nom
     
     @property
     def name(self):

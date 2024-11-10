@@ -5,8 +5,9 @@ from abc import ABC, abstractmethod
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 
 class AbstractReference(ABC):
-    __id: str = str(uuid.uuid4())
-    __name: str = ""
+    def __init__(self):
+        self.__id: str = uuid.uuid4().hex
+        self.__name: str = ""
     
     @property
     def id(self) -> str:
@@ -15,7 +16,6 @@ class AbstractReference(ABC):
     @id.setter
     def id(self, new_id: str):
         self.__id = new_id
-        
     
     @property
     def name(self) -> str:
