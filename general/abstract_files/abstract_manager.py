@@ -5,7 +5,7 @@ class AbstractManager(ABC):
     _instance = None
     __banned_dirs = ['.vscode']
 
-    def __new__(cls):
+    def __new__(cls, *args, **kwargs):
         if cls._instance is None:
             cls._instance = super(AbstractManager, cls).__new__(cls)
         return cls._instance

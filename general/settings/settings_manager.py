@@ -81,7 +81,7 @@ class SettingsManager(AbstractManager, AbstractLogic):
         data.property_type = "01234"
         data.default_report_format = 'csv'
         data.block_period = date(year=2024, month=10, day=1)
-        data.is_first_start = True,
+        data.is_first_start = True
         data.data_source = self.__default_data_file_name
 
         return data

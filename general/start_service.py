@@ -72,8 +72,8 @@ class StartService(AbstractLogic):
         thing_unit = MeasurementUnit.default_unit_thing()
         tablespoon_unit = MeasurementUnit.default_unit_tablespoon()
         teaspoon_unit = MeasurementUnit.default_unit_teaspoon()
-        unit_list = (kg_unit, gramm_unit, thing_unit,
-                     tablespoon_unit, teaspoon_unit)
+        unit_list = [kg_unit, gramm_unit, thing_unit,
+                     tablespoon_unit, teaspoon_unit]
         
         self.__reposity.data[self.__reposity.unit_key()] = unit_list
         

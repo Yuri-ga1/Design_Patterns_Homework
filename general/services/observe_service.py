@@ -19,7 +19,10 @@ class ObserverService:
         statuses = {}
         for instance in ObserverService.observers:
             if instance is not None:
-                status = instance.handle_event(type, params)
-                statuses[type(instance).__name__] = status
+                try:
+                    status = instance.handle_event(type, params)
+                    statuses[type(instance).__name__] = status
+                except Exception:
+                    continue
         return statuses
     
