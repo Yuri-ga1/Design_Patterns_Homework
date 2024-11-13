@@ -27,7 +27,7 @@ class WarehouseTurnoverProcess(AbstractProcess):
             
             key = (transaction.warehouse.id, transaction.nomenclature.id, transaction.unit.id)
             if key not in turnovers:
-                turnovers[key] = WarehouseTurnover(
+                turnovers[key] = WarehouseTurnover.create(
                     warehouse=transaction.warehouse,
                     nomenclature=transaction.nomenclature,
                     unit=transaction.unit

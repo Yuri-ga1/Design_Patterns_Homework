@@ -59,7 +59,7 @@ class TestWarehouseTurnoverProcess(unittest.TestCase):
         result = process.process(transactions=filtered_data.data)
 
         expected_turnovers = [
-            WarehouseTurnover(warehouse=self.warehouse_1, nomenclature=self.nomenclature_1, unit=self.range_1, flow=100. - 50.)
+            WarehouseTurnover.create(warehouse=self.warehouse_1, nomenclature=self.nomenclature_1, unit=self.range_1, flow=100. - 50.)
         ]
 
         self.assertEqual(len(result), len(expected_turnovers))

@@ -53,7 +53,7 @@ class TestBlockPeriodTurnoverProcessor(unittest.TestCase):
         result = process.process(transactions=self.transactions)
 
         expected_turnovers = [
-            WarehouseTurnover(warehouse=self.warehouse_1, nomenclature=self.nomenclature_1, unit=self.range_1, flow=-25.)
+            WarehouseTurnover.create(warehouse=self.warehouse_1, nomenclature=self.nomenclature_1, unit=self.range_1, flow=-25.)
         ]
 
         self.assertEqual(len(result), len(expected_turnovers))
@@ -71,8 +71,8 @@ class TestBlockPeriodTurnoverProcessor(unittest.TestCase):
         result = process.process(transactions=self.transactions)
 
         expected_turnovers = [
-            WarehouseTurnover(warehouse=self.warehouse_1, nomenclature=self.nomenclature_1, unit=self.range_1, flow=-25.),
-            WarehouseTurnover(warehouse=self.warehouse_2, nomenclature=self.nomenclature_2, unit=self.range_2, flow=100.),
+            WarehouseTurnover.create(warehouse=self.warehouse_1, nomenclature=self.nomenclature_1, unit=self.range_1, flow=-25.),
+            WarehouseTurnover.create(warehouse=self.warehouse_2, nomenclature=self.nomenclature_2, unit=self.range_2, flow=100.),
         ]
         
         self.assertEqual(len(result), len(expected_turnovers))
