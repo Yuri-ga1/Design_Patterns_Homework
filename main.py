@@ -13,8 +13,8 @@ from general.settings.settings_manager import SettingsManager
 from general.recipes.recipe_manager import RecipeManager
 from general.domain_prototype import DomainPrototype
 from general.filter.filter_dto import FilterDTO
-from general.start_service import StartService
-from general.data_reposity import DataReposity
+from general.data_reposity.data_reposity import DataReposity
+from general.data_reposity.data_reposity_manager import DataReposityManager
 from general.services.observe_service import ObserverService
 
 from general.filter.filter_warehouse_nomenclature_dto import WarehouseNomenclatureFilterDTO
@@ -22,18 +22,34 @@ from general.prototypes.warehouse_transaction_prototype import WarehouseTransact
 from general.processors.process_factory import ProcessFactory
 from general.processors.process_warehouse_turnover import WarehouseTurnoverProcess
 
+from contextlib import asynccontextmanager
+
 from api.nomeclature_api import router as nomen_router
 
 
 settings_manager = SettingsManager()
 reposity = DataReposity()
 recipe_manager = RecipeManager()
-service = StartService(reposity, settings_manager, recipe_manager)
-service.create()
+
+reposity_manager = DataReposityManager(
+    reposity=reposity,
+    recipe_manager=recipe_manager,
+    settings_manager=settings_manager
+)
 
 observer_service = ObserverService()
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    if settings_manager.settings.is_first_start:
+        reposity_manager._default_value()
+    else:
+        reposity_manager.open(file_name=settings_manager.settings.data_source)
+    yield
+
+app = FastAPI(
+    lifespan=lifespan
+)
 
 app.include_router(nomen_router)
 
@@ -48,8 +64,8 @@ def create_report(form_data: CreateReportModel = Depends()):
     category = form_data.category
     format_type = form_data.format_type
     
-    reposity_data = reposity.data
-    reposity_data_keys = reposity.keys
+    reposity_data = reposity_manager.reposity.data
+    reposity_data_keys = reposity_manager.reposity.keys
     
     if category not in reposity_data_keys:
         raise HTTPException(status_code=400, detail="Invalid category")
@@ -71,8 +87,8 @@ async def filter_data(form_data: FilterDataModel = Depends()):
     domain_type = form_data.domain_type
     request = form_data.request
     
-    reposity_data = reposity.data
-    reposity_data_keys = reposity.keys
+    reposity_data = reposity_manager.reposity.data
+    reposity_data_keys = reposity_manager.reposity.keys
     
     if domain_type not in reposity_data_keys:
         raise HTTPException(status_code=400, detail="Invalid domain type")
@@ -110,7 +126,7 @@ async def get_transactions(form_data: TransactionFilterRequest = Depends()):
     warehouse_filt = FilterDTO.create(warehouse_filter.dict())
     nomenclature_filt = FilterDTO.create(nomenclature_filter.dict())
 
-    data = reposity.data[reposity.warehouse_transaction_key()]
+    data = reposity_manager.reposity.data[DataReposity.warehouse_transaction_key()]
     if not data:
         raise HTTPException(status_code=404, detail="No data available")
 
@@ -132,7 +148,7 @@ async def get_turnover(form_data: TurnoverFilterRequest = Depends()):
     try:
         warehouse_filt = WarehouseNomenclatureFilterDTO.create(form_data.filter.warehouse.dict())
         
-        data = reposity.data[DataReposity.warehouse_transaction_key()]
+        data = reposity_manager.reposity.data[DataReposity.warehouse_transaction_key()]
         if not data:
             raise HTTPException(status_code=404, detail="No data available")
 
