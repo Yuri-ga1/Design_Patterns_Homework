@@ -8,7 +8,7 @@ from src.models.warehouse_turnover import WarehouseTurnover
 
 from general.processors.process_warehouse_turnover import WarehouseTurnoverProcess
 from general.prototypes.warehouse_transaction_prototype import WarehouseTransactionPrototype
-from general.data_reposity import DataReposity
+from general.data_reposity.data_reposity import DataReposity
 from general.settings.settings_manager import SettingsManager
 from general.recipes.recipe_manager import RecipeManager
 from general.start_service import StartService

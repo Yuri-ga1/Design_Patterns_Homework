@@ -3,7 +3,7 @@ import random
 from datetime import datetime, timedelta
 
 from general.abstract_files.abstract_logic import AbstractLogic
-from general.data_reposity import DataReposity
+from general.data_reposity.data_reposity import DataReposity
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 
 from general.settings.settings_manager import SettingsManager

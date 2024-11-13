@@ -11,7 +11,7 @@ from general.processors.process_warehouse_turnover_block_period import BlockPeri
 from general.processors.process_warehouse_turnover import WarehouseTurnoverProcess
 from general.settings.settings_manager import SettingsManager
 from general.recipes.recipe_manager import RecipeManager
-from general.data_reposity import DataReposity
+from general.data_reposity.data_reposity import DataReposity
 from general.start_service import StartService
 
 class TestBlockPeriodTurnoverProcessor(unittest.TestCase):

@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock, patch
 from general.services.nomenclature_service import NomenclatureService
-from general.data_reposity import DataReposity
+from general.data_reposity.data_reposity import DataReposity
 from general.filter.filter_dto import FilterDTO
 from src.models.Nomenclature import Nomenclature
 

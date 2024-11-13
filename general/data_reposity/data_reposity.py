@@ -1,5 +1,5 @@
 from general.abstract_files.abstract_logic import AbstractLogic
-
+from general.exception.Validator_wrapper import ValidatorWrapper
 
 """
 Репозиторий данных
@@ -18,6 +18,12 @@ class DataReposity(AbstractLogic):
     @property
     def data(self):
         return self.__data
+    
+    @data.setter
+    def data(self, value: dict):
+        ValidatorWrapper.validate_type(value, dict, "value in data.setter in DataReposity")
+        ValidatorWrapper.validate_not_empty_dataset
+        self.__data = value
     
     @property
     def keys(self):

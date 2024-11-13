@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Query, Body
 
 from general.services.nomenclature_service import NomenclatureService
-from general.data_reposity import DataReposity
+from general.data_reposity.data_reposity import DataReposity
 from general.reports.report_factory import ReportFactory
 from general.settings.settings_manager import SettingsManager
 from general.services.observe_service import ObserverService
