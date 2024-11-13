@@ -2,6 +2,9 @@ from general.abstract_files.abstract_model import AbstractReference
 from typing import Dict
 from abc import ABC, abstractmethod
 from general.exception.Validator_wrapper import ValidatorWrapper
+from datetime import datetime
+
+from src.emuns.transaction_types import TransactionTypes
 
 class AbstractDeserializer(ABC):
     __class_mapping: dict = {}
@@ -45,9 +48,22 @@ class AbstractDeserializer(ABC):
         obj = target_class.__new__(target_class)
         
         for field, value in data.items():
-            if isinstance(value, dict) and "__class__" in value:
+            
+            if isinstance(value, str):
+                try:
+                    value = datetime.fromisoformat(value)
+                except ValueError:
+                    pass
+                try:
+                    value = TransactionTypes[value]
+                except KeyError:
+                    pass
+                setattr(obj, field, value)
+                
+            elif isinstance(value, dict) and "__class__" in value:
                 nested_obj = self._dict_to_object(value)
                 setattr(obj, field, nested_obj)
+                
             elif isinstance(value, list):
                 list_of_objects = []
                 for item in value:
@@ -56,6 +72,7 @@ class AbstractDeserializer(ABC):
                     else:
                         list_of_objects.append(item)
                 setattr(obj, field, list_of_objects)
+                
             else:
                 setattr(obj, field, value)
 

@@ -28,11 +28,9 @@ from api.nomeclature_api import router as nomen_router
 
 
 settings_manager = SettingsManager()
-reposity = DataReposity()
 recipe_manager = RecipeManager()
 
 reposity_manager = DataReposityManager(
-    reposity=reposity,
     recipe_manager=recipe_manager,
     settings_manager=settings_manager
 )
@@ -188,6 +186,29 @@ async def update_block_period(form_data: BlockPeriodForm = Depends()):
 @app.get("/get_block_period")
 async def get_block_period():
     return settings_manager.settings.block_period
+
+@app.post("/save_reposity_data")
+async def save_reposity_data(file_name: str):
+    try:
+        params ={
+            "file_name": file_name,
+        }
+        statuses = observer_service.raise_event(EventType.SAVE_REPOSITY, params)
+        return {"message": f"Reposity data was successfully saved {statuses}"}
+    except Exception:
+        HTTPException(status_code=500, detail="Failed to save save reposity data")
+        
+        
+@app.post("/restore_reposity_data")
+async def restore_reposity_data(file_name: str):
+    try:
+        params ={
+            "file_name": file_name,
+        }
+        observer_service.raise_event(EventType.LOAD_REPOSITY, params)
+        return {"data_reposity": reposity_manager.reposity.data}
+    except Exception:
+        HTTPException(status_code=500, detail="Failed to load reposity data")
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
