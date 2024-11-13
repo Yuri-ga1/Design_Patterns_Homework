@@ -42,3 +42,14 @@ class BlockPeriodForm:
         block_period: date = Query(None, description="Block period (YYYY-MM-DD)")
     ):
         self.block_period = block_period
+        
+class TrialBalanceForm:
+    def __init__(
+        self,
+        warehouse: OptionalFilterDTOModel = Body(...),
+        start_date: date = Query(None, description="Period start (YYYY-MM-DD)"),
+        end_date: date = Query(None, description="Period end (YYYY-MM-DD)"),
+    ):
+        self.warehouse = warehouse
+        self.start_date = start_date
+        self.end_date = end_date
