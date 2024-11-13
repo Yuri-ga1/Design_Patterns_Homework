@@ -1,5 +1,6 @@
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 from src.emuns.format_reporting import FormatReporting
+from pathlib import Path
 
 from datetime import date
 
@@ -15,6 +16,8 @@ class Settings:
     __property_type = ""
     __default_report_format = ""
     __block_period: date = ""
+    __is_first_start: bool = True
+    __data_source: Path = ""
 
     @property
     def organization_name(self):
@@ -104,3 +107,25 @@ class Settings:
         Validator.validate_type(value, date, 'block_period value')
         
         self.__block_period = value
+        
+    @property
+    def is_first_start(self):
+        return self.__is_first_start
+    
+    @is_first_start.setter
+    def is_first_start(self, value: bool):
+        Validator.validate_type(value, bool, 'is_first_start value')
+        
+        self.__is_first_start = value
+        
+    
+    @property
+    def data_source(self):
+        return self.__data_source
+    
+    @data_source.setter
+    def data_source(self, value: Path | None):
+        if value is not None:
+            Validator.validate_type(value, Path, 'data_source value')
+        
+        self.__data_source = value
