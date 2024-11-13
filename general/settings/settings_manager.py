@@ -3,11 +3,13 @@ from datetime import date
 
 from .settings import Settings
 from general.exception.Validator_wrapper import ValidatorWrapper as Validator
+from general.services.observe_service import ObserverService
 
 from src.emuns.event_types import EventType
 
 from general.abstract_files.abstract_manager import AbstractManager
 from general.abstract_files.abstract_logic import AbstractLogic
+
 
 class SettingsManager(AbstractManager, AbstractLogic):
     __file_name = "settings.json"
@@ -18,6 +20,9 @@ class SettingsManager(AbstractManager, AbstractLogic):
         if self.__settings is None:
             self.__settings = self._default_value()
             
+        ObserverService.add(self)
+            
+      
     def convert(self, new_dict: dict):
         Validator.validate_type(new_dict, dict, 'new_dict')
         for key, value in new_dict.items():

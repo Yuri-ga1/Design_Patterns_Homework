@@ -16,6 +16,7 @@ class NomenclatureService(AbstractLogic):
     def __init__(self, reposity: DataReposity):
         ValidatorWrapper.validate_type(reposity, DataReposity, "reposity in NomenclatureService __init__")
         self.reposity = reposity
+        ObserverService.add(self)
     
     def add(self, name, full_name, group_id, unit_id):
         try:
