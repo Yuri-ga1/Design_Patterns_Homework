@@ -1,5 +1,7 @@
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.responses import JSONResponse
+import json
+import os
 
 import uvicorn
 
@@ -19,7 +21,7 @@ from general.services.observe_service import ObserverService
 
 from general.filter.filter_warehouse_nomenclature_dto import WarehouseNomenclatureFilterDTO
 from general.prototypes.warehouse_transaction_prototype import WarehouseTransactionPrototype
-from general.processors.process_warehouse_turnover_block_period import BlockPeriodTurnoverProcessor
+from general.reports.trial_balance import TrialBalanceReport
 from general.processors.process_factory import ProcessFactory
 from general.processors.process_warehouse_turnover import WarehouseTurnoverProcess
 
@@ -37,6 +39,8 @@ reposity_manager = DataReposityManager(
 )
 
 observer_service = ObserverService()
+
+trial_balance_report = TrialBalanceReport(settings_manager=settings_manager)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -212,67 +216,25 @@ async def restore_reposity_data(file_name: str):
     except Exception:
         HTTPException(status_code=500, detail="Failed to load reposity data")
         
-@app.post("/get_trial_balance")
-async def get_trial_balance(form_data: TrialBalanceForm = Depends()):
+@app.post("/create_trial_balance")
+async def create_trial_balance(form_data: TrialBalanceForm = Depends()):
     try:
-        warehouse_filter = form_data.warehouse
-        warehouse_filt = FilterDTO.create(warehouse_filter.dict())
         
-        start_date = form_data.start_date
-        end_date= form_data.end_date
+        params = {
+            'transactions': reposity_manager.reposity.data[DataReposity.warehouse_transaction_key()],
+            'warehouse_filter': form_data.warehouse,
+            'start_date': form_data.start_date,
+            'end_date': form_data.end_date
+        }
         
-        data = reposity_manager.reposity.data[DataReposity.warehouse_transaction_key()]
-        if not data:
-            raise HTTPException(status_code=404, detail="No data available")
-
-        prototype = DomainPrototype(data)
-        filtered_data = prototype.create(data, warehouse_filt)
-
-        if not filtered_data:
-            raise HTTPException(status_code=404, detail="No transactions found")
+        observer_service.raise_event(EventType.CREATE_TRIAL_BALANCE_REPORT, params)
         
-        blocked_process = BlockPeriodTurnoverProcessor()
-        
-        first_period = blocked_process.process(
-                transactions=filtered_data.data,
-                end_period=start_date
-            )
-        if not first_period:
-            raise HTTPException(status_code=404, detail="No turnovers found for first period")
-        
-        second_period = blocked_process.process(
-                transactions=filtered_data.data,
-                start_period=start_date, 
-                end_period=end_date
-            )
-        if not second_period:
-            raise HTTPException(status_code=404, detail="No turnovers found for second period")
-
-
-        report_data = []
-        all_keys = set(first_period.keys()).union(second_period.keys())
-        
-        for key in all_keys:
-            nomenclature_name = first_period.get(key, second_period.get(key)).nomenclature.name
-            unit_name = first_period.get(key, second_period.get(key)).unit.name
+        file_path = os.path.join('files', "trial_balance_report.json")
+        with open(file_path, "r", encoding="utf-8") as json_file:
+            result = json.load(json_file)
             
-            
-            flow_first = first_period[key].flow if key in first_period else 0
-            flow_second = second_period[key].flow if key in second_period else 0
-            total_flow = flow_first + flow_second
-            
-            report_data.append({
-                "nomenclature_name": nomenclature_name,
-                "unit": unit_name,
-                "flow_first_period": flow_first,
-                "flow_second_period": flow_second,
-                "total_flow": total_flow
-            })
-
-        return JSONResponse(content={
-            "report": report_data,
-        })
-        
+        return result
+    
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
 
