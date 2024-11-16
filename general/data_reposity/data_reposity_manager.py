@@ -43,14 +43,10 @@ class DataReposityManager(AbstractManager, AbstractLogic):
             full_name = self._get_file_path(file_name)
             data = deserializer.deserialize(file_path=full_name)
             self.__reposity.data = data
-            # Validator.validate_file_exists(full_name)
-                
-            # with open(full_name, 'r', encoding="utf-8") as stream:
-            #     data = json.load(stream)
-            #     self.__reposity.data = data
+            return True
         except Exception as e:
-            print("Exception: ", e)
-            # self._default_value()
+            self.set_exception(e)
+            return False
         
     def save(self, params):
         file_name = params['file_name']
@@ -73,13 +69,14 @@ class DataReposityManager(AbstractManager, AbstractLogic):
     
     def _default_value(self):
         self.__service.create()
+        ObserverService.raise_event(EventType.SAVE_SETTINGS, params=None)
         
     @property
     def reposity(self):
         return self.__reposity
     
     def set_exception(self, ex):
-        return super().set_exception(ex)
+        self._inner_set_exception(ex)
     
     def handle_event(self, type: EventType, params):
         super().handle_event(type, params)
