@@ -95,3 +95,5 @@ class SettingsManager(AbstractManager, AbstractLogic):
         match type:
             case EventType.CHANGE_BLOCK_PERIOD:
                 self.save()
+            case EventType.SAVE_SETTINGS:
+                self.save()
