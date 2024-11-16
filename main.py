@@ -49,6 +49,7 @@ async def lifespan(app: FastAPI):
     else:
         reposity_manager.open(file_name=settings_manager.settings.data_source)
     yield
+    observer_service.raise_event(EventType.SAVE_SETTINGS, params=None)
     observer_service.raise_event(EventType.SAVE_REPOSITY, params={"file_name": settings_manager.settings.data_source})
 
 app = FastAPI(

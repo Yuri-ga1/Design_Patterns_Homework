@@ -69,7 +69,6 @@ class DataReposityManager(AbstractManager, AbstractLogic):
     
     def _default_value(self):
         self.__service.create()
-        ObserverService.raise_event(EventType.SAVE_SETTINGS, params=None)
         
     @property
     def reposity(self):
