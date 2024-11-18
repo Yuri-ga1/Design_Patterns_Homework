@@ -11,7 +11,7 @@ from general.processors.process_warehouse_turnover_block_period import BlockPeri
 from general.processors.process_warehouse_turnover import WarehouseTurnoverProcess
 from general.settings.settings_manager import SettingsManager
 from general.recipes.recipe_manager import RecipeManager
-from general.data_reposity import DataReposity
+from general.data_reposity.data_reposity import DataReposity
 from general.start_service import StartService
 
 class TestBlockPeriodTurnoverProcessor(unittest.TestCase):
@@ -53,7 +53,7 @@ class TestBlockPeriodTurnoverProcessor(unittest.TestCase):
         result = process.process(transactions=self.transactions)
 
         expected_turnovers = [
-            WarehouseTurnover(warehouse=self.warehouse_1, nomenclature=self.nomenclature_1, unit=self.range_1, flow=-25.)
+            WarehouseTurnover.create(warehouse=self.warehouse_1, nomenclature=self.nomenclature_1, unit=self.range_1, flow=-25.)
         ]
 
         self.assertEqual(len(result), len(expected_turnovers))
@@ -71,8 +71,8 @@ class TestBlockPeriodTurnoverProcessor(unittest.TestCase):
         result = process.process(transactions=self.transactions)
 
         expected_turnovers = [
-            WarehouseTurnover(warehouse=self.warehouse_1, nomenclature=self.nomenclature_1, unit=self.range_1, flow=-25.),
-            WarehouseTurnover(warehouse=self.warehouse_2, nomenclature=self.nomenclature_2, unit=self.range_2, flow=100.),
+            WarehouseTurnover.create(warehouse=self.warehouse_1, nomenclature=self.nomenclature_1, unit=self.range_1, flow=-25.),
+            WarehouseTurnover.create(warehouse=self.warehouse_2, nomenclature=self.nomenclature_2, unit=self.range_2, flow=100.),
         ]
         
         self.assertEqual(len(result), len(expected_turnovers))

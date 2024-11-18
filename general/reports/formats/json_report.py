@@ -36,16 +36,14 @@ class JsonReport(AbstractReport):
             if not field.startswith("_") and not callable(getattr(obj.__class__, field)):
                 value = getattr(obj, field)
                 
-                if isinstance(value, enum.EnumMeta):
-                    result[field] = value.value
+                if isinstance(value, enum.Enum):
+                    result[field] = value.name
                     continue
                 
                 if hasattr(value, "__dict__"):
                     result[field] = self._object_to_dict(value)
                 elif isinstance(value, (list, tuple)):
                     result[field] = [self._object_to_dict(item) if hasattr(item, "__dict__") else item for item in value]
-                elif hasattr(value, 'name'):
-                    result[field] = value.name
                 elif isinstance(value, datetime):
                     result[field] = value.isoformat()
                 else:

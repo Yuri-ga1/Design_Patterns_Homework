@@ -1,0 +1,338 @@
+[
+    {
+        "nomenclature_name": "сахар",
+        "unit": "Столовая ложка",
+        "flow_first_period": -246.6151531378481,
+        "flow_second_period": 6.5452838455503475,
+        "total_flow": -240.06986929229774
+    },
+    {
+        "nomenclature_name": "ванильный экстракт",
+        "unit": "Столовая ложка",
+        "flow_first_period": 0,
+        "flow_second_period": -68.50385216689064,
+        "total_flow": -68.50385216689064
+    },
+    {
+        "nomenclature_name": "ванильный экстракт",
+        "unit": "Килограмм",
+        "flow_first_period": 36.23360221961033,
+        "flow_second_period": -89.03848559732097,
+        "total_flow": -52.80488337771064
+    },
+    {
+        "nomenclature_name": "сахар",
+        "unit": "Килограмм",
+        "flow_first_period": 0,
+        "flow_second_period": -257.89869363143583,
+        "total_flow": -257.89869363143583
+    },
+    {
+        "nomenclature_name": "разрыхлитель",
+        "unit": "Штука",
+        "flow_first_period": 10.151139034082183,
+        "flow_second_period": 0,
+        "total_flow": 10.151139034082183
+    },
+    {
+        "nomenclature_name": "шоколадные капли/кусочки",
+        "unit": "Штука",
+        "flow_first_period": -14.160543416101131,
+        "flow_second_period": 0,
+        "total_flow": -14.160543416101131
+    },
+    {
+        "nomenclature_name": "шоколадные капли/кусочки",
+        "unit": "Чайная ложка",
+        "flow_first_period": 52.82250687333921,
+        "flow_second_period": -11.662693810467225,
+        "total_flow": 41.15981306287198
+    },
+    {
+        "nomenclature_name": "разрыхлитель",
+        "unit": "Чайная ложка",
+        "flow_first_period": 16.23921740920636,
+        "flow_second_period": 83.00814711183087,
+        "total_flow": 99.24736452103723
+    },
+    {
+        "nomenclature_name": "шоколадные капли/кусочки",
+        "unit": "Грамм",
+        "flow_first_period": 0,
+        "flow_second_period": -18.3509619752269,
+        "total_flow": -18.3509619752269
+    },
+    {
+        "nomenclature_name": "разрыхлитель",
+        "unit": "Грамм",
+        "flow_first_period": -137.59909286181758,
+        "flow_second_period": -65.20640150120862,
+        "total_flow": -202.80549436302618
+    },
+    {
+        "nomenclature_name": "соль",
+        "unit": "Штука",
+        "flow_first_period": 24.53244859750122,
+        "flow_second_period": -171.0943255188145,
+        "total_flow": -146.56187692131326
+    },
+    {
+        "nomenclature_name": "разрыхлитель",
+        "unit": "Столовая ложка",
+        "flow_first_period": 30.18998111618596,
+        "flow_second_period": -32.99096033655955,
+        "total_flow": -2.8009792203735913
+    },
+    {
+        "nomenclature_name": "пшеничная мука",
+        "unit": "Штука",
+        "flow_first_period": 0,
+        "flow_second_period": -21.320571272950986,
+        "total_flow": -21.320571272950986
+    },
+    {
+        "nomenclature_name": "пшеничная мука",
+        "unit": "Чайная ложка",
+        "flow_first_period": 77.85109274630253,
+        "flow_second_period": 132.7670127206685,
+        "total_flow": 210.61810546697103
+    },
+    {
+        "nomenclature_name": "шоколадные капли/кусочки",
+        "unit": "Столовая ложка",
+        "flow_first_period": 168.1333160108511,
+        "flow_second_period": 42.79276008249259,
+        "total_flow": 210.92607609334368
+    },
+    {
+        "nomenclature_name": "пшеничная мука",
+        "unit": "Грамм",
+        "flow_first_period": 146.60968186301852,
+        "flow_second_period": -40.801057196627184,
+        "total_flow": 105.80862466639134
+    },
+    {
+        "nomenclature_name": "шоколадные капли/кусочки",
+        "unit": "Килограмм",
+        "flow_first_period": 58.535150248780695,
+        "flow_second_period": 0,
+        "total_flow": 58.535150248780695
+    },
+    {
+        "nomenclature_name": "соль",
+        "unit": "Чайная ложка",
+        "flow_first_period": -125.8640656289045,
+        "flow_second_period": -20.666355103614002,
+        "total_flow": -146.5304207325185
+    },
+    {
+        "nomenclature_name": "разрыхлитель",
+        "unit": "Килограмм",
+        "flow_first_period": -11.087625041968177,
+        "flow_second_period": -53.35552535680121,
+        "total_flow": -64.44315039876939
+    },
+    {
+        "nomenclature_name": "соль",
+        "unit": "Грамм",
+        "flow_first_period": -170.93733165424246,
+        "flow_second_period": 0,
+        "total_flow": -170.93733165424246
+    },
+    {
+        "nomenclature_name": "яйца",
+        "unit": "Штука",
+        "flow_first_period": 30.105402250720942,
+        "flow_second_period": 81.81892918726784,
+        "total_flow": 111.92433143798878
+    },
+    {
+        "nomenclature_name": "пшеничная мука",
+        "unit": "Столовая ложка",
+        "flow_first_period": -35.826963074046795,
+        "flow_second_period": 0,
+        "total_flow": -35.826963074046795
+    },
+    {
+        "nomenclature_name": "яйца",
+        "unit": "Чайная ложка",
+        "flow_first_period": 129.35087899221816,
+        "flow_second_period": 0,
+        "total_flow": 129.35087899221816
+    },
+    {
+        "nomenclature_name": "сливочное масло",
+        "unit": "Штука",
+        "flow_first_period": -82.92119558832047,
+        "flow_second_period": -52.72281771036317,
+        "total_flow": -135.64401329868363
+    },
+    {
+        "nomenclature_name": "яйца",
+        "unit": "Грамм",
+        "flow_first_period": -61.0694430709658,
+        "flow_second_period": 0,
+        "total_flow": -61.0694430709658
+    },
+    {
+        "nomenclature_name": "соль",
+        "unit": "Столовая ложка",
+        "flow_first_period": -41.05254394060398,
+        "flow_second_period": 84.55263307765946,
+        "total_flow": 43.50008913705548
+    },
+    {
+        "nomenclature_name": "пшеничная мука",
+        "unit": "Килограмм",
+        "flow_first_period": 0,
+        "flow_second_period": 24.214302172498712,
+        "total_flow": 24.214302172498712
+    },
+    {
+        "nomenclature_name": "соль",
+        "unit": "Килограмм",
+        "flow_first_period": -91.51103690819382,
+        "flow_second_period": -31.91360104460618,
+        "total_flow": -123.4246379528
+    },
+    {
+        "nomenclature_name": "сливочное масло",
+        "unit": "Грамм",
+        "flow_first_period": -86.22515964572693,
+        "flow_second_period": 0,
+        "total_flow": -86.22515964572693
+    },
+    {
+        "nomenclature_name": "ванильный экстракт",
+        "unit": "Грамм",
+        "flow_first_period": 0,
+        "flow_second_period": 113.81821448092572,
+        "total_flow": 113.81821448092572
+    },
+    {
+        "nomenclature_name": "яйца",
+        "unit": "Столовая ложка",
+        "flow_first_period": 27.314849320298972,
+        "flow_second_period": 13.554937104756412,
+        "total_flow": 40.86978642505538
+    },
+    {
+        "nomenclature_name": "сливочное масло",
+        "unit": "Столовая ложка",
+        "flow_first_period": -166.54656793139338,
+        "flow_second_period": 60.97850683107233,
+        "total_flow": -105.56806110032105
+    },
+    {
+        "nomenclature_name": "ванилин(щепотка)",
+        "unit": "Штука",
+        "flow_first_period": 71.40140468733027,
+        "flow_second_period": -16.796321524283016,
+        "total_flow": 54.605083163047254
+    },
+    {
+        "nomenclature_name": "коричневый сахар",
+        "unit": "Чайная ложка",
+        "flow_first_period": 71.3486076840254,
+        "flow_second_period": -51.299137028604704,
+        "total_flow": 20.04947065542069
+    },
+    {
+        "nomenclature_name": "сливочное масло",
+        "unit": "Килограмм",
+        "flow_first_period": 50.6770764396539,
+        "flow_second_period": 0,
+        "total_flow": 50.6770764396539
+    },
+    {
+        "nomenclature_name": "коричневый сахар",
+        "unit": "Штука",
+        "flow_first_period": 95.59143129881845,
+        "flow_second_period": 0,
+        "total_flow": 95.59143129881845
+    },
+    {
+        "nomenclature_name": "ванилин(щепотка)",
+        "unit": "Чайная ложка",
+        "flow_first_period": 0,
+        "flow_second_period": 63.893210655743445,
+        "total_flow": 63.893210655743445
+    },
+    {
+        "nomenclature_name": "ванилин(щепотка)",
+        "unit": "Грамм",
+        "flow_first_period": -7.9521637559589395,
+        "flow_second_period": -168.77562375867956,
+        "total_flow": -176.7277875146385
+    },
+    {
+        "nomenclature_name": "коричневый сахар",
+        "unit": "Грамм",
+        "flow_first_period": -12.522181281478154,
+        "flow_second_period": 51.3092160410502,
+        "total_flow": 38.787034759572045
+    },
+    {
+        "nomenclature_name": "коричневый сахар",
+        "unit": "Столовая ложка",
+        "flow_first_period": -165.93215738748796,
+        "flow_second_period": 38.619545674220504,
+        "total_flow": -127.31261171326746
+    },
+    {
+        "nomenclature_name": "ванилин(щепотка)",
+        "unit": "Столовая ложка",
+        "flow_first_period": 0,
+        "flow_second_period": -4.493423970347791,
+        "total_flow": -4.493423970347791
+    },
+    {
+        "nomenclature_name": "коричневый сахар",
+        "unit": "Килограмм",
+        "flow_first_period": -23.05336267895733,
+        "flow_second_period": 50.71881725223488,
+        "total_flow": 27.665454573277547
+    },
+    {
+        "nomenclature_name": "ванилин(щепотка)",
+        "unit": "Килограмм",
+        "flow_first_period": -279.98494343948124,
+        "flow_second_period": -3.356568294861148,
+        "total_flow": -283.34151173434236
+    },
+    {
+        "nomenclature_name": "сахар",
+        "unit": "Штука",
+        "flow_first_period": 42.47294622622417,
+        "flow_second_period": -154.0056839557108,
+        "total_flow": -111.53273772948663
+    },
+    {
+        "nomenclature_name": "ванильный экстракт",
+        "unit": "Штука",
+        "flow_first_period": -119.29597983347685,
+        "flow_second_period": 117.45618482319938,
+        "total_flow": -1.83979501027747
+    },
+    {
+        "nomenclature_name": "сахар",
+        "unit": "Чайная ложка",
+        "flow_first_period": 48.855413964775394,
+        "flow_second_period": 4.070626810810964,
+        "total_flow": 52.92604077558636
+    },
+    {
+        "nomenclature_name": "ванильный экстракт",
+        "unit": "Чайная ложка",
+        "flow_first_period": 80.21370809295586,
+        "flow_second_period": -37.286992193307704,
+        "total_flow": 42.92671589964815
+    },
+    {
+        "nomenclature_name": "сахар",
+        "unit": "Грамм",
+        "flow_first_period": -24.17831082443037,
+        "flow_second_period": -86.03802166071564,
+        "total_flow": -110.21633248514601
+    }
+]

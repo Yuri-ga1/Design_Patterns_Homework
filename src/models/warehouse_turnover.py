@@ -11,27 +11,19 @@ class WarehouseTurnover(AbstractReference):
     __nomenclature: Nomenclature = Nomenclature()
     __unit: MeasurementUnit = MeasurementUnit()
     
-    def __init__(
-            self,
-            warehouse: WarehouseModel = None,
-            flow: float = 0.0,
-            nomenclature: Nomenclature = None,
-            unit: MeasurementUnit = None,
-        ):
-        if warehouse:
-            ValidatorWrapper.validate_type(warehouse, WarehouseModel, "WarehouseModel")
-            self.__warehouse = warehouse
-        
-        ValidatorWrapper.validate_type(flow, float, "flow")
-        self.__flow = flow
-        
-        if nomenclature:
-            ValidatorWrapper.validate_type(nomenclature, Nomenclature, "Nomenclature")
-            self.__nomenclature = nomenclature
-        
-        if unit:
-            ValidatorWrapper.validate_type(unit, MeasurementUnit, "MeasurementUnit")
-            self.__unit = unit
+    @staticmethod
+    def create(
+        warehouse: WarehouseModel,
+        nomenclature: Nomenclature,
+        unit: MeasurementUnit,
+        flow: float = 0.0,
+    ):
+        wt = WarehouseTurnover()
+        wt.warehouse = warehouse
+        wt.flow = flow
+        wt.nomenclature = nomenclature
+        wt.unit = unit
+        return wt
 
     @property
     def warehouse(self):

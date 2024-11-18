@@ -1,6 +1,6 @@
 import unittest
 from general.start_service import StartService
-from general.data_reposity import DataReposity
+from general.data_reposity.data_reposity import DataReposity
 from general.settings.settings_manager import SettingsManager
 from general.recipes.recipe_manager import RecipeManager
 

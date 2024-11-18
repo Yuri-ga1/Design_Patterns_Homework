@@ -1,5 +1,7 @@
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.responses import JSONResponse
+import json
+import os
 
 import uvicorn
 
@@ -13,27 +15,46 @@ from general.settings.settings_manager import SettingsManager
 from general.recipes.recipe_manager import RecipeManager
 from general.domain_prototype import DomainPrototype
 from general.filter.filter_dto import FilterDTO
-from general.start_service import StartService
-from general.data_reposity import DataReposity
+from general.data_reposity.data_reposity import DataReposity
+from general.data_reposity.data_reposity_manager import DataReposityManager
 from general.services.observe_service import ObserverService
 
 from general.filter.filter_warehouse_nomenclature_dto import WarehouseNomenclatureFilterDTO
 from general.prototypes.warehouse_transaction_prototype import WarehouseTransactionPrototype
+from general.reports.trial_balance import TrialBalanceReport
 from general.processors.process_factory import ProcessFactory
 from general.processors.process_warehouse_turnover import WarehouseTurnoverProcess
+
+from contextlib import asynccontextmanager
 
 from api.nomeclature_api import router as nomen_router
 
 
 settings_manager = SettingsManager()
-reposity = DataReposity()
 recipe_manager = RecipeManager()
-service = StartService(reposity, settings_manager, recipe_manager)
-service.create()
+
+reposity_manager = DataReposityManager(
+    recipe_manager=recipe_manager,
+    settings_manager=settings_manager
+)
 
 observer_service = ObserverService()
 
-app = FastAPI()
+trial_balance_report = TrialBalanceReport(settings_manager=settings_manager)
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    if settings_manager.settings.is_first_start:
+        reposity_manager._default_value()
+    else:
+        reposity_manager.open(file_name=settings_manager.settings.data_source)
+    yield
+    observer_service.raise_event(EventType.SAVE_SETTINGS, params=None)
+    observer_service.raise_event(EventType.SAVE_REPOSITY, params={"file_name": settings_manager.settings.data_source})
+
+app = FastAPI(
+    lifespan=lifespan
+)
 
 app.include_router(nomen_router)
 
@@ -48,8 +69,8 @@ def create_report(form_data: CreateReportModel = Depends()):
     category = form_data.category
     format_type = form_data.format_type
     
-    reposity_data = reposity.data
-    reposity_data_keys = reposity.keys
+    reposity_data = reposity_manager.reposity.data
+    reposity_data_keys = reposity_manager.reposity.keys
     
     if category not in reposity_data_keys:
         raise HTTPException(status_code=400, detail="Invalid category")
@@ -71,8 +92,8 @@ async def filter_data(form_data: FilterDataModel = Depends()):
     domain_type = form_data.domain_type
     request = form_data.request
     
-    reposity_data = reposity.data
-    reposity_data_keys = reposity.keys
+    reposity_data = reposity_manager.reposity.data
+    reposity_data_keys = reposity_manager.reposity.keys
     
     if domain_type not in reposity_data_keys:
         raise HTTPException(status_code=400, detail="Invalid domain type")
@@ -110,7 +131,7 @@ async def get_transactions(form_data: TransactionFilterRequest = Depends()):
     warehouse_filt = FilterDTO.create(warehouse_filter.dict())
     nomenclature_filt = FilterDTO.create(nomenclature_filter.dict())
 
-    data = reposity.data[reposity.warehouse_transaction_key()]
+    data = reposity_manager.reposity.data[DataReposity.warehouse_transaction_key()]
     if not data:
         raise HTTPException(status_code=404, detail="No data available")
 
@@ -132,7 +153,7 @@ async def get_turnover(form_data: TurnoverFilterRequest = Depends()):
     try:
         warehouse_filt = WarehouseNomenclatureFilterDTO.create(form_data.filter.warehouse.dict())
         
-        data = reposity.data[DataReposity.warehouse_transaction_key()]
+        data = reposity_manager.reposity.data[DataReposity.warehouse_transaction_key()]
         if not data:
             raise HTTPException(status_code=404, detail="No data available")
 
@@ -172,6 +193,51 @@ async def update_block_period(form_data: BlockPeriodForm = Depends()):
 @app.get("/get_block_period")
 async def get_block_period():
     return settings_manager.settings.block_period
+
+@app.post("/save_reposity_data")
+async def save_reposity_data(file_name: str):
+    try:
+        params ={
+            "file_name": file_name,
+        }
+        statuses = observer_service.raise_event(EventType.SAVE_REPOSITY, params)
+        return {"message": f"Reposity data was successfully saved {statuses}"}
+    except Exception:
+        HTTPException(status_code=500, detail="Failed to save save reposity data")
+        
+        
+@app.post("/restore_reposity_data")
+async def restore_reposity_data(file_name: str):
+    try:
+        params ={
+            "file_name": file_name,
+        }
+        observer_service.raise_event(EventType.LOAD_REPOSITY, params)
+        return {"data_reposity": reposity_manager.reposity.data}
+    except Exception:
+        HTTPException(status_code=500, detail="Failed to load reposity data")
+        
+@app.post("/create_trial_balance")
+async def create_trial_balance(form_data: TrialBalanceForm = Depends()):
+    try:
+        
+        params = {
+            'transactions': reposity_manager.reposity.data[DataReposity.warehouse_transaction_key()],
+            'warehouse_filter': form_data.warehouse,
+            'start_date': form_data.start_date,
+            'end_date': form_data.end_date
+        }
+        
+        observer_service.raise_event(EventType.CREATE_TRIAL_BALANCE_REPORT, params)
+        
+        file_path = os.path.join('files', "trial_balance_report.json")
+        with open(file_path, "r", encoding="utf-8") as json_file:
+            result = json.load(json_file)
+            
+        return result
+    
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=500)
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
