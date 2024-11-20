@@ -7,26 +7,11 @@
 2024-11-20 21:45:29 - INFO - Trial balance report created successfully
 2024-11-20 21:45:48 - INFO - Updating block period to 2015-10-12
 2024-11-20 21:45:48 - INFO - Handle event with type EventType.CHANGE_BLOCK_PERIOD and params None
-2024-11-20 21:45:48 - INFO - Handle event with type EventType.CHANGE_BLOCK_PERIOD and params None
-2024-11-20 21:45:48 - INFO - Handle event with type EventType.CHANGE_BLOCK_PERIOD and params None
-2024-11-20 21:45:48 - INFO - Handle event with type EventType.CHANGE_BLOCK_PERIOD and params None
 2024-11-20 21:45:55 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 21:45:55 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 21:45:55 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 21:45:55 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 21:45:55 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 21:45:55 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 21:45:55 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 21:45:55 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 22:11:57 - INFO - Starting FastAPI application...
 2024-11-20 22:11:58 - INFO - Starting application...
 2024-11-20 22:24:19 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 22:24:19 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 22:24:19 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 22:24:19 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 22:24:19 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 22:24:19 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 22:24:19 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 22:24:19 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 14:53:29 - INFO - Starting FastAPI application...
 2024-11-20 14:53:29 - INFO - Starting FastAPI application...
@@ -34,64 +19,27 @@
 2024-11-20 14:53:30 - INFO - Starting application...
 2024-11-20 14:53:57 - INFO - Updating block period to 2020-10-21
 2024-11-20 14:53:57 - INFO - Handle event with type EventType.CHANGE_BLOCK_PERIOD and params None
-2024-11-20 14:53:57 - INFO - Handle event with type EventType.CHANGE_BLOCK_PERIOD and params None
-2024-11-20 14:53:57 - INFO - Handle event with type EventType.CHANGE_BLOCK_PERIOD and params None
-2024-11-20 14:53:57 - INFO - Handle event with type EventType.CHANGE_BLOCK_PERIOD and params None
-2024-11-20 14:54:32 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 14:54:32 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 14:54:32 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 14:54:32 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
 2024-11-20 14:54:32 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
 2024-11-20 14:54:32 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 14:54:32 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 14:54:32 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 14:54:32 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 14:54:32 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 14:54:32 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 14:54:32 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 14:54:32 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 14:54:32 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 14:54:33 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 14:54:33 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:02:26 - INFO - Starting FastAPI application...
 2024-11-20 23:02:27 - INFO - Starting application...
 2024-11-20 23:02:36 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:02:36 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:02:36 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:02:36 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:02:36 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:02:36 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:02:36 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:02:36 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:02:49 - INFO - Starting FastAPI application...
 2024-11-20 23:02:50 - INFO - Starting application...
 2024-11-20 23:05:18 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:05:18 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:05:18 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:05:18 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:05:18 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:05:18 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:05:18 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:05:18 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 15:07:33 - INFO - Starting FastAPI application...
 2024-11-20 15:07:33 - INFO - Starting FastAPI application...
 2024-11-20 15:07:33 - INFO - Starting application...
 2024-11-20 15:07:33 - INFO - Starting application...
 2024-11-20 15:09:14 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 15:09:14 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 15:09:14 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 15:09:14 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 15:09:14 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 15:09:14 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
 2024-11-20 15:09:14 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 15:09:14 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
 2024-11-20 15:09:14 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 15:09:14 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 15:09:14 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 15:09:14 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 15:09:14 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 15:09:14 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 15:09:15 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 15:09:15 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 15:10:24 - INFO - Starting FastAPI application...
 2024-11-20 15:10:24 - INFO - Starting FastAPI application...
@@ -100,148 +48,52 @@
 2024-11-20 15:11:46 - INFO - Creating report for category: unit, format: JSON
 2024-11-20 15:11:46 - INFO - Report created successfully with 5 records.
 2024-11-20 15:12:23 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 15:12:23 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 15:12:23 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 15:12:23 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 15:12:23 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 15:12:23 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 15:12:23 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 15:12:23 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 15:12:23 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 15:12:23 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 15:12:23 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 15:12:23 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 15:12:23 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 15:12:23 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 15:12:24 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 15:12:24 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:17:58 - INFO - Starting FastAPI application...
 2024-11-20 23:17:59 - INFO - Starting application...
 2024-11-20 23:19:20 - INFO - Retrieving current block period
 2024-11-20 23:21:04 - INFO - Filtering data for domain type: unit
 2024-11-20 23:22:07 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:22:07 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:22:07 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:22:07 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:22:07 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:22:07 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:22:07 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:22:07 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:22:08 - INFO - Starting application...
 2024-11-20 23:22:12 - INFO - Filtering data for domain type: unit
-2024-11-20 23:22:12 - ERROR - Error in filter data:
- Traceback (most recent call last):
-  File "c:\delete\python\Design_Patterns\Design_Patterns_Homework\main.py", line 126, in filter_data
-    filt = FilterDTO.create(filter_data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "c:\delete\python\Design_Patterns\Design_Patterns_Homework\general\filter\filter_dto.py", line 49, in create
-    Validator.validate_type(data, dict, "data")
-  File "c:\delete\python\Design_Patterns\Design_Patterns_Homework\general\exception\Validator_wrapper.py", line 46, in validate_type
-    raise ArgumentException(argument_name, f"Expected type {expected_type.__name__} but got {type(value).__name__}")
-general.exception.exceptions.ArgumentException: Expected type dict but got str: data
-
+2024-11-20 23:22:12 - ERROR - Error in filter data: Expected type dict but got str: data
 2024-11-20 23:22:45 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:22:45 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:22:45 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:22:45 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:22:45 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:22:45 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:22:45 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:22:45 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:22:46 - INFO - Starting application...
 2024-11-20 23:22:48 - INFO - Filtering data for domain type: unit request: name='Грамм' unique_code='' type='LIKE'
-2024-11-20 23:22:48 - ERROR - Error in filter data:
- Traceback (most recent call last):
-  File "c:\delete\python\Design_Patterns\Design_Patterns_Homework\main.py", line 126, in filter_data
-    filt = FilterDTO.create(filter_data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "c:\delete\python\Design_Patterns\Design_Patterns_Homework\general\filter\filter_dto.py", line 49, in create
-    Validator.validate_type(data, dict, "data")
-  File "c:\delete\python\Design_Patterns\Design_Patterns_Homework\general\exception\Validator_wrapper.py", line 46, in validate_type
-    raise ArgumentException(argument_name, f"Expected type {expected_type.__name__} but got {type(value).__name__}")
-general.exception.exceptions.ArgumentException: Expected type dict but got str: data
-
+2024-11-20 23:22:48 - ERROR - Error in filter data: Expected type dict but got str: data
 2024-11-20 23:24:14 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:24:14 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:24:14 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:24:14 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:24:14 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:24:14 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:24:14 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:24:14 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:24:15 - INFO - Starting application...
 2024-11-20 23:24:31 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:24:31 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:24:31 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:24:31 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:24:31 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:24:31 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:24:31 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:24:31 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:24:32 - INFO - Starting application...
 2024-11-20 23:24:34 - INFO - Filtering data for domain type: unit request: name='Грамм' unique_code='' type='LIKE'
-2024-11-20 23:24:34 - ERROR - Error in filter data:
- Traceback (most recent call last):
-  File "c:\delete\python\Design_Patterns\Design_Patterns_Homework\main.py", line 128, in filter_data
-    filt = FilterDTO.create(filter_data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "c:\delete\python\Design_Patterns\Design_Patterns_Homework\general\filter\filter_dto.py", line 49, in create
-    Validator.validate_type(data, dict, "data")
-  File "c:\delete\python\Design_Patterns\Design_Patterns_Homework\general\exception\Validator_wrapper.py", line 46, in validate_type
-    raise ArgumentException(argument_name, f"Expected type {expected_type.__name__} but got {type(value).__name__}")
-general.exception.exceptions.ArgumentException: Expected type dict but got str: data
-
+2024-11-20 23:24:34 - ERROR - Error in filter data: Expected type dict but got str: data
 2024-11-20 23:27:11 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:27:11 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:27:11 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:27:11 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:27:11 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:27:11 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:27:11 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:27:11 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:27:12 - INFO - Starting application...
 2024-11-20 23:27:16 - INFO - Filtering data for domain type: unit request: {'name': 'Грамм', 'unique_code': '', 'type': 'LIKE'}
 2024-11-20 23:27:38 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:27:38 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:27:38 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:27:38 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:27:38 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:27:38 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:27:38 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:27:39 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:27:39 - INFO - Starting application...
 2024-11-20 23:27:41 - INFO - Filtering data for domain type: unit request: name='Грамм' unique_code='' type='LIKE'
 2024-11-20 23:27:41 - INFO - Filtered data for domain type unit successfully
 2024-11-20 23:31:40 - INFO - Updating block period to 2020-09-28
 2024-11-20 23:31:40 - INFO - Handle event with type EventType.CHANGE_BLOCK_PERIOD and params None
-2024-11-20 23:31:40 - INFO - Handle event with type EventType.CHANGE_BLOCK_PERIOD and params None
-2024-11-20 23:31:40 - INFO - Handle event with type EventType.CHANGE_BLOCK_PERIOD and params None
-2024-11-20 23:31:40 - INFO - Handle event with type EventType.CHANGE_BLOCK_PERIOD and params None
 2024-11-20 23:32:27 - INFO - Saving repository data to file: test_file.json
-2024-11-20 23:32:27 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'test_file.json'}
-2024-11-20 23:32:27 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'test_file.json'}
-2024-11-20 23:32:27 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'test_file.json'}
 2024-11-20 23:32:28 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'test_file.json'}
 2024-11-20 23:34:03 - INFO - Creating trial balance report for warehouse: name='Pendos' unique_code='' type='LIKE'
 2024-11-20 23:34:03 - INFO - Handle event with type EventType.CREATE_TRIAL_BALANCE_REPORT and params {'transactions': [<src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CD9BD9A0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EC90>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EE40>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EE70>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EEA0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4E960>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EBD0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EC00>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EF00>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F3E0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F440>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F4A0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F500>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F560>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD75D90>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD75DF0>], 'warehouse_filter': OptionalFilterDTOModel(name='Pendos', unique_code='', type='LIKE'), 'start_date': datetime.date(1980, 10, 10), 'end_date': datetime.date(2000, 10, 10)}
 2024-11-20 23:34:03 - INFO - Handle event with type EventType.CREATE_TRIAL_BALANCE_REPORT and params {'transactions': [<src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CD9BD9A0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EC90>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EE40>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EE70>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EEA0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4E960>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EBD0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EC00>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EF00>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F3E0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F440>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F4A0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F500>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F560>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F5C0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F620>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD75CD0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD75D30>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD75D90>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD75DF0>], 'warehouse_filter': OptionalFilterDTOModel(name='Pendos', unique_code='', type='LIKE'), 'start_date': datetime.date(1980, 10, 10), 'end_date': datetime.date(2000, 10, 10)}
-2024-11-20 23:34:03 - INFO - Handle event with type EventType.CREATE_TRIAL_BALANCE_REPORT and params {'transactions': [<src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CD9BD9A0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EC90>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EE40>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EE70>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EEA0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4E960>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EBD0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EC00>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EF00>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F3E0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F440>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F4A0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F500>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F560>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F5C0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F620>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD75CD0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD75D30>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD75D90>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD75DF0>], 'warehouse_filter': OptionalFilterDTOModel(name='Pendos', unique_code='', type='LIKE'), 'start_date': datetime.date(1980, 10, 10), 'end_date': datetime.date(2000, 10, 10)}
+2024-11-20 23:34:03 - INFO - Handle event with type EventType.CREATE_TRIAL_BALANCE_REPORT and params {'transactions': [<src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CD9BD9A0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EC90>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EE40>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EE70>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EEA0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4E960>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EBD0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EC00>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F5C0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F620>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD75CD0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD75D30>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD75D90>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD75DF0>], 'warehouse_filter': OptionalFilterDTOModel(name='Pendos', unique_code='', type='LIKE'), 'start_date': datetime.date(1980, 10, 10), 'end_date': datetime.date(2000, 10, 10)}
 2024-11-20 23:34:03 - INFO - Handle event with type EventType.CREATE_TRIAL_BALANCE_REPORT and params {'transactions': [<src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CD9BD9A0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EC90>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EE40>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EE70>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EEA0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4E960>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EBD0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EC00>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4EF00>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD4F3E0>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD75D90>, <src.models.warehouse_transaction.WarehouseTransaction object at 0x00000235CDD75DF0>], 'warehouse_filter': OptionalFilterDTOModel(name='Pendos', unique_code='', type='LIKE'), 'start_date': datetime.date(1980, 10, 10), 'end_date': datetime.date(2000, 10, 10)}
 2024-11-20 23:34:03 - INFO - Trial balance report created successfully
 2024-11-20 23:36:53 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:36:53 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:36:53 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:36:53 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:36:53 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:36:53 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:36:53 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:36:53 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:36:54 - INFO - Starting application...
 2024-11-20 23:37:02 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:37:02 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:37:02 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:37:02 - INFO - Handle event with type EventType.SAVE_SETTINGS and params None
-2024-11-20 23:37:02 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:37:02 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
-2024-11-20 23:37:02 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
 2024-11-20 23:37:02 - INFO - Handle event with type EventType.SAVE_REPOSITY and params {'file_name': 'default_data.json'}
