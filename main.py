@@ -106,9 +106,9 @@ def create_report(form_data: CreateReportModel = Depends()):
 
 @app.post("/filter/{domain_type}")
 async def filter_data(form_data: FilterDataModel = Depends()):
-    logger.info(f"Filtering data for domain type: {form_data.domain_type}")
     domain_type = form_data.domain_type
     request = form_data.request
+    logger.info(f"Filtering data for domain type: {domain_type} request: {request}")
     
     reposity_data = reposity_manager.reposity.data
     reposity_data_keys = reposity_manager.reposity.keys
@@ -117,7 +117,7 @@ async def filter_data(form_data: FilterDataModel = Depends()):
         logger.error(f"Invalid domain type: {domain_type}")
         raise HTTPException(status_code=400, detail="Invalid domain type")
     
-    filter_data = await request.json()
+    filter_data = request.model_dump()
     if not filter_data:
         logger.error("Invalid JSON payload")
         raise HTTPException(status_code=400, detail="Invalid JSON payload")
