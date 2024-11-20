@@ -10,6 +10,7 @@ from api.models.server_models import *
 from src.emuns.format_reporting import FormatReporting
 from src.emuns.event_types import EventType
 
+from general.logger import Logger
 from general.reports.report_factory import ReportFactory
 from general.settings.settings_manager import SettingsManager
 from general.recipes.recipe_manager import RecipeManager
@@ -41,6 +42,13 @@ reposity_manager = DataReposityManager(
 observer_service = ObserverService()
 
 trial_balance_report = TrialBalanceReport(settings_manager=settings_manager)
+
+logger = Logger(
+    log_file=settings_manager.settings.log_filename,
+    file_level=settings_manager.settings.file_log_level,
+    console_level=settings_manager.settings.console_log_level,
+    enable_console=settings_manager.settings.enable_console,
+)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):

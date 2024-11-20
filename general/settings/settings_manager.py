@@ -6,6 +6,7 @@ from general.exception.Validator_wrapper import ValidatorWrapper as Validator
 from general.services.observe_service import ObserverService
 
 from src.emuns.event_types import EventType
+from src.emuns.logging_levels import LogLevel
 
 from general.abstract_files.abstract_manager import AbstractManager
 from general.abstract_files.abstract_logic import AbstractLogic
@@ -83,6 +84,10 @@ class SettingsManager(AbstractManager, AbstractLogic):
         data.block_period = date(year=2024, month=10, day=1)
         data.is_first_start = True
         data.data_source = self.__default_data_file_name
+        data.file_log_level = LogLevel.INFO
+        data.console_log_level = LogLevel.DEBUG
+        data.enable_console = True
+        data.log_filename =  "log.log"
 
         return data
 

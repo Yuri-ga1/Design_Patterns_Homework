@@ -8,5 +8,9 @@
     "default_report_format": "csv",
     "block_period": "2024-10-1",
     "is_first_start": "True",
-    "data_source": "default_data.json"
+    "data_source": "default_data.json",
+    "file_log_level": "INFO",
+    "console_log_level": "DEBUG",
+    "enable_console": "True",
+    "log_filename": "log.log"
 }
