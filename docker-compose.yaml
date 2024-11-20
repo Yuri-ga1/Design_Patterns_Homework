@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  service1:
+    container_name: container1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - ./files:/app/files
+      - ./log.log:/app/log.log
+    networks:
+      - default-network
+    restart: "always"
+
+  service2:
+    container_name: container2
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8001:8000
+    volumes:
+      - ./files:/app/files
+      - ./log.log:/app/log.log
+    networks:
+      - default-network
+    restart: "always"
+
+networks:
+  default-network:
+    driver: bridge

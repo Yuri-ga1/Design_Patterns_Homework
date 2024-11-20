@@ -285,4 +285,4 @@ async def create_trial_balance(form_data: TrialBalanceForm = Depends()):
 
 if __name__ == "__main__":
     logger.info("Starting FastAPI application...")
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
