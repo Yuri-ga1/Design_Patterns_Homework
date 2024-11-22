@@ -33,7 +33,5 @@ class AbstractLogic(ABC):
     
     @abstractmethod
     def handle_event(self, type: EventType, params):
-        from main import logger
         ValidatorWrapper.validate_type(type, EventType, "type")
-        logger.info(f"Handle event with type {type} and params {params}")
      

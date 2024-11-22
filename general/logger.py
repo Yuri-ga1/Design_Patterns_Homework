@@ -2,8 +2,12 @@ import os
 from datetime import datetime
 
 from src.emuns.logging_levels import LogLevel
+from src.emuns.event_types import EventType
 
-class Logger:
+from general.abstract_files.abstract_logic import AbstractLogic
+from general.services.observe_service import ObserverService
+
+class Logger(AbstractLogic):
     _instance = None
 
     def __new__(cls, *args, **kwargs):
@@ -23,6 +27,7 @@ class Logger:
                     pass
 
             self._initialized = True
+            ObserverService.add(self)
         else:
             if any([
                 log_file != self.log_file,
@@ -75,3 +80,21 @@ class Logger:
 
     def critical(self, message: str):
         self.log(LogLevel.CRITICAL, message)
+
+
+    def set_exception(self, ex):
+        return super().set_exception(ex)
+    
+    def handle_event(self, type, params):
+        super().handle_event(type, params)
+        match type:
+            case EventType.LOGGER_DEBUG:
+                self.debug(params)
+            case EventType.LOGGER_INFO:
+                self.info(params)
+            case EventType.LOGGER_WARNING:
+                self.warning(params)
+            case EventType.LOGGER_ERROR:
+                self.error(params)
+            case EventType.LOGGER_CRITICAL:
+                self.critical(params)
