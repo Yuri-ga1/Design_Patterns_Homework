@@ -1,12 +1,16 @@
 {
-    "inn": "987654321099",
-    "organization_name": "Рога и копыта",
-    "account": "98765432109",
-    "correspondent_account": "98765432109",
-    "bic": "987654321",
-    "property_type": "98765",
+    "account": "01234567890",
+    "bic": "012345678",
+    "block_period": "2024-10-01",
+    "console_log_level": "LogLevel.DEBUG",
+    "correspondent_account": "01234567890",
+    "data_source": "default_data.json",
     "default_report_format": "csv",
-    "block_period": "2024-10-1",
-    "is_first_start": "True",
-    "data_source": "default_data.json"
+    "enable_console": "True",
+    "file_log_level": "LogLevel.INFO",
+    "inn": "012345678901",
+    "is_first_start": "False",
+    "log_filename": "log.log",
+    "organization_name": "Рога и копыта (default)",
+    "property_type": "01234"
 }

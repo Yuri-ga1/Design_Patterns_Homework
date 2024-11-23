@@ -49,7 +49,7 @@ class StartService(AbstractLogic):
         self.__reposity.data[self.__reposity.group_key()] = list
 
     def __create_nomenclature(self):
-        directory = f'files{os.sep}recipes'
+        directory = os.path.join('files', 'recipes')
         ingredients = []
         
         for filename in os.listdir(directory):
